@@ -130,7 +130,7 @@
       "root": "projects/angular-spectre",
       "sourceRoot": "projects/angular-spectre/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ngs",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

@@ -2,6 +2,6 @@
  * Public API Surface of angular-spectre
  */
 
-export * from './lib/angular-spectre.service';
-export * from './lib/angular-spectre.component';
-export * from './lib/angular-spectre.module';
+export * from './lib/pagination/pagination.service';
+export * from './lib/pagination/pagination.component';
+export * from './lib/pagination/pagination.module';
