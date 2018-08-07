@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "angular-spectre": {
+      "root": "projects/angular-spectre",
+      "sourceRoot": "projects/angular-spectre/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-spectre/tsconfig.lib.json",
+            "project": "projects/angular-spectre/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/angular-spectre/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-spectre/src/test.ts",
+            "tsConfig": "projects/angular-spectre/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-spectre/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-spectre/tsconfig.lib.json",
+              "projects/angular-spectre/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-spectre-dev"
