@@ -1,0 +1,11 @@
+language: node_js
+dist: trusty
+
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run lint
+  - ng build angular-spectre --prod
