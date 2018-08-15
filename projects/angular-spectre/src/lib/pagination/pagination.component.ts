@@ -144,9 +144,11 @@ export class PaginationComponent {
     current: number,
     total: number,
   ): Array<number | '...'> {
+
     let pageCount;
     const needEllipsis = total > visible;
     const hasStartEllipsis = needEllipsis && visible - 3 < current;
+
     const hasEndEllipsis = needEllipsis && current < total - visible + 4;
     if (!needEllipsis) {
       return range(1, total);
