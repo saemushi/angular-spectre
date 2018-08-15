@@ -3,7 +3,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 const range = (start, length) => {
   const a = Array(length);
   return [...Array(length)].map((_, i) => start + i);
+<<<<<<< HEAD
 }
+=======
+};
+
+>>>>>>> upstream/master
 const MAX_VISIBLE_PAGES = 7;
 const PAGER_ICONS = true;
 
@@ -143,26 +148,23 @@ export class PaginationComponent {
     current: number,
     total: number,
   ): Array<number | '...'> {
-    // if (visible < 7) {
-    //   throw new Error('cannot create range with visible pages less than 7');
-    // }
-    // only need ellipsis if we have more pages than we can display
+
+    let pageCount;
     const needEllipsis = total > visible;
-    // show start ellipsis if the current page is further away than max - 3 from the first page
     const hasStartEllipsis = needEllipsis && visible - 3 < current;
-    // show end ellipsis if the current page is further than total - max + 3 from the last page
+
     const hasEndEllipsis = needEllipsis && current < total - visible + 4;
     if (!needEllipsis) {
       return range(1, total);
     } else if (hasStartEllipsis && !hasEndEllipsis) {
-      const pageCount = visible - 2;
+      pageCount = visible - 2;
       return [1, '...', ...range(total - pageCount + 1, pageCount)];
     } else if (!hasStartEllipsis && hasEndEllipsis) {
-      const pageCount = visible - 2;
+      pageCount = visible - 2;
       return [...range(1, pageCount), '...', total];
     }
-    // we have both start and end ellipsis
-    const pageCount = visible - 4;
+
+    pageCount = visible - 4;
     return [
       1,
       '...',
