@@ -1,3 +1,4 @@
+import { ChipModule } from './../chip/chip.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +10,8 @@ import { NGSLabelModule } from './../directives/label.directive';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NGSLabelModule
+    NGSLabelModule,
+    ChipModule
   ],
   declarations: [AutoCompleteComponent],
   exports: [AutoCompleteComponent]
