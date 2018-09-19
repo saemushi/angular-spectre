@@ -3,12 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 const range = (start, length) => {
   const a = Array(length);
   return [...Array(length)].map((_, i) => start + i);
-<<<<<<< HEAD
-}
-=======
 };
-
->>>>>>> upstream/master
 const MAX_VISIBLE_PAGES = 7;
 const PAGER_ICONS = true;
 
