@@ -55,7 +55,7 @@ export class NgsBadgeDirective {
    * Position the badge should reside.
    * Accepts any combination of 'above'|'below' and 'before'|'after'
    */
-  @Input('ngsBadgePosition') position: BadgePosition = 'above after';
+  @Input() ngsBadgePosition: BadgePosition = 'above after';
 
   /** The content for the badge */
   @Input('ngsBadge')
@@ -87,12 +87,12 @@ export class NgsBadgeDirective {
 
   /** Whether the badge is above the host or not */
   isAbove(): boolean {
-    return this.position.indexOf('below') === -1;
+    return this.ngsBadgePosition.indexOf('below') === -1;
   }
 
   /** Whether the badge is after the host or not */
   isAfter(): boolean {
-    return this.position.indexOf('before') === -1;
+    return this.ngsBadgePosition.indexOf('before') === -1;
   }
 
   /** Injects a span element into the DOM with the content. */
