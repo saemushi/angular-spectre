@@ -1,0 +1,191 @@
+@import "../../../../../../node_modules/spectre.css/src/_variables.scss";
+
+$ngs-badge-font-size: 12px;
+$ngs-badge-font-weight: 600;
+$ngs-badge-default-size: 20px !default;
+$ngs-badge-small-size: $ngs-badge-default-size - 6;
+$ngs-badge-large-size: $ngs-badge-default-size+6;
+
+// Mixin for building offset given different sizes
+@mixin _ngs-badge-size($size) {
+  &::after {
+    width: $size;
+    height: $size;
+    line-height: $size;
+
+    //     // @include cdk-high-contrast {
+    //     //   outline: solid 1px;
+    //     //   border-radius: 0;
+    //     // }
+  }
+
+  &.ngs-badge-above {
+    &::after {
+      top: 0;
+    }
+  }
+
+  &.ngs-badge-below {
+    &::after {
+      bottom: -$size / 1.6;
+    }
+  }
+
+  &.ngs-badge-before {
+    &::after {
+      left: -$size;
+    }
+  }
+
+  [dir='rtl'] &.ngs-badge-before {
+    &::after {
+      left: auto;
+      right: -$size;
+    }
+  }
+
+  &.ngs-badge-after {
+    &::after {
+      right: -$size;
+    }
+  }
+
+  [dir='rtl'] &.ngs-badge-after {
+    &::after {
+      right: auto;
+      left: -$size;
+    }
+  }
+
+  &.ngs-badge-overlap {
+    &.ngs-badge-before {
+      &::after {
+        left: -$size / 2;
+      }
+    }
+
+    [dir='rtl'] &.ngs-badge-before {
+      &::after {
+        left: auto;
+        right: -$size / 2;
+      }
+    }
+
+    &.ngs-badge-after {
+      &::after {
+        right: -$size / 2;
+      }
+    }
+
+    [dir='rtl'] &.ngs-badge-after {
+      &::after {
+        right: auto;
+        left: -$size / 2;
+      }
+    }
+  }
+}
+
+// @mixin ngs-badge-theme($theme) {
+$accent: $primary-color-light;
+$warn: $primary-color-dark;
+$primary: $primary-color;
+
+
+
+.ngs-badge {
+  position: relative;
+  white-space: nowrap;
+
+  &[data-badge],
+  &:not([data-badge]) {
+    &::after {
+      position: absolute;
+      background: $primary;
+      background-clip: padding-box;
+      border-radius: .5rem;
+      text-align: center;
+      box-shadow: 0 0 0 .1rem $bg-color-light;
+      color: $light-color;
+      content: attr(data-badge);
+      display: inline-block;
+      transform: translate(-.05rem, -.5rem);
+      white-space: nowrap;
+      pointer-events: none;
+      overflow: hidden;
+    }
+  }
+
+  &[data-badge] {
+    &::after {
+      position: absolute;
+      font-size: $font-size-sm;
+      height: .9rem;
+      line-height: 1;
+      min-width: .9rem;
+      padding: .1rem .2rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+      overflow: hidden;
+    }
+  }
+
+  &:not([data-badge]),
+  &[data-badge=""] {
+    &::after {
+      height: 6px;
+      min-width: 6px;
+      padding: 0;
+      width: 6px;
+    }
+  }
+
+  &.ngs-badge-accent {
+    &::after {
+      background: $accent;
+      color: lighten($accent, 3%);
+    }
+  }
+
+  &.ngs-badge-empty {
+    &::after {
+      right: 0;
+    }
+  }
+
+  &.ngs-badge-warn {
+    &::after {
+      background: $warn;
+      color: lighten($warn, 3%);
+    }
+  }
+
+  &.ngs-badge-content.ngs-badge-active {
+    // Scale to `none` instead of `1` to avoid blurry text in some browsers.
+    transform: none;
+  }
+
+  &.ngs-badge-small {
+    &::after {
+      @include _ngs-badge-size($ngs-badge-small-size);
+      font-size: $ngs-badge-font-size / 2;
+    }
+  }
+
+  @include _ngs-badge-size($ngs-badge-default-size);
+
+  &.ngs-badge-large {
+    &::after {
+      @include _ngs-badge-size($ngs-badge-large-size);
+      font-size: $ngs-badge-font-size * 2;
+    }
+  }
+
+  &.ngs-badge-hidden {
+    &::after {
+      display: none;
+    }
+  }
+}
