@@ -4,6 +4,7 @@ import { PaginationModule } from 'angular-spectre';
 import { AutoCompleteModule } from 'angular-spectre';
 import { FormInputModule } from 'angular-spectre';
 import { ChipModule } from 'angular-spectre';
+import { NgsBadgeModule } from 'angular-spectre';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,6 +25,7 @@ import { ChipComponent } from './chip/chip.component';
     FormInputModule,
     AutoCompleteModule,
     ChipModule
+    NgsBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
