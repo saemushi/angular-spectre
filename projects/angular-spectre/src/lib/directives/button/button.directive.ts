@@ -1,9 +1,7 @@
-import { Directive, OnInit, Input, ElementRef, Renderer, HostListener, HostBinding } from '@angular/core';
+// import { Directive, OnInit, Input, ElementRef, Renderer, HostListener, HostBinding } from '@angular/core';
 
-@Directive({
-  selector: '[ngsButton]'
-})
+// @Directive({
+//   selector: '[ngsButton]'
+// })
 
-export class NgsButtonDirective {
-    
-}
+// export class NgsButtonDirective {}

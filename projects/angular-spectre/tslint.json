@@ -12,6 +12,12 @@
             "element",
             "ngs",
             "kebab-case"
+        ],
+        "no-input-rename": [
+            false
+        ],
+        "no-output-on-prefix": [
+            false
         ]
     }
 }
