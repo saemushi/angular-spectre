@@ -115,10 +115,3 @@ export class NgsBadgeDirective {
   }
 
 }
-
-
-@NgModule({
-  declarations: [NgsBadgeDirective],
-  exports: [NgsBadgeDirective]
-})
-export class NgsBadgeModule { }
