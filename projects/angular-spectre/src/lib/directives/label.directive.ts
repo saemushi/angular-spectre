@@ -1,7 +1,7 @@
 import { Directive, HostBinding, NgModule } from '@angular/core';
 
 @Directive({
-    selector: 'ngs-label'
+    selector: '[ngsLabel]'
 })
 export class LabelDirective {
     @HostBinding('class')
