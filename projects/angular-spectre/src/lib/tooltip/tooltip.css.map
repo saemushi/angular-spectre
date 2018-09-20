@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA;;;EAGE;AASF,AAAA,kBAAkB,CAAC;EAIjB,cAAc,EAAE,eAAe;CAChC;;AAED,AAAA,YAAY,CAAC;EACX,KAAK,EAAE,KAAK;EACZ,aAAa,EAAE,GAAG;EAClB,MAAM,EAfa,IAAI;EAgBvB,SAAS,EAjBa,KAAK;EAkB3B,YAAY,EAnBmB,GAAG;EAoBlC,aAAa,EApBkB,GAAG;EAqBlC,QAAQ,EAAE,MAAM;EAChB,aAAa,EAAE,QAAQ;EACvB;;;;IAIE;CACH;;AAED,AAAA,oBAAoB,CAAC;EACnB,MAAM,EA1BqB,IAAI;EA2B/B,YAAY,EA5B2B,IAAI;EA6B3C,aAAa,EA7B0B,IAAI;CA8B5C",
-    "sources": [
-        "tooltipmat.scss"
-    ],
-    "names": [],
-    "file": "tooltipmat.css"
-}
