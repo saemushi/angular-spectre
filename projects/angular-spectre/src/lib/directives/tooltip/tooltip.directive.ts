@@ -1,7 +1,7 @@
 import { Directive, OnInit, Input, ElementRef, Renderer2, HostListener, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[ngsTooltipSpec]'
+  selector: '[ngsTooltipBasic]'
 })
 
 export class NgsTooltipDirective {

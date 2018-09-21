@@ -11,13 +11,6 @@ $ngs-badge-large-size: $ngs-badge-default-size+6;
 @mixin _ngs-badge-size($size) {
   &::after {
     width: $ngs-badge-default-width;
-    // height: $size;
-    // line-height: $size;
-
-    //     // @include cdk-high-contrast {
-    //     //   outline: solid 1px;
-    //     //   border-radius: 0;
-    //     // }
   }
 
   &.ngs-badge-above {
