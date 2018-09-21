@@ -24,7 +24,9 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/lodash": "^4.14.116",
     "core-js": "^2.5.4",
+    "lodash": "^4.17.11",
     "rxjs": "^6.0.0",
     "spectre.css": "^0.5.3",
     "zone.js": "^0.8.26"
