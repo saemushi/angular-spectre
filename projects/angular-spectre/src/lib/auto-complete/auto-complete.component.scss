@@ -1,0 +1,25 @@
+.ngs-autocomplete-panel {
+    min-width: 112px;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: none;
+    max-height: 256px;
+    padding: 0;
+}
+.menu {
+    z-index: 1001;
+}
+
+.option-active {
+    background: rgba(0,0,0,.07);
+}
+
+.overlay-container {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
