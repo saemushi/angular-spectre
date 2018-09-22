@@ -2,21 +2,15 @@
 
 $ngs-badge-font-size: 12px;
 $ngs-badge-font-weight: 600;
-$ngs-badge-default-size: 20px !default;
+$ngs-badge-default-width: 20px !default;
+$ngs-badge-default-size: 25px !default;
 $ngs-badge-small-size: $ngs-badge-default-size - 6;
 $ngs-badge-large-size: $ngs-badge-default-size+6;
 
 // Mixin for building offset given different sizes
 @mixin _ngs-badge-size($size) {
   &::after {
-    width: $size;
-    height: $size;
-    line-height: $size;
-
-    //     // @include cdk-high-contrast {
-    //     //   outline: solid 1px;
-    //     //   border-radius: 0;
-    //     // }
+    width: $ngs-badge-default-width;
   }
 
   &.ngs-badge-above {

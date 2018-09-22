@@ -1,0 +1,30 @@
+@import "../../../../../../node_modules/spectre.css/src/_variables.scss";
+@import '../../../../../../node_modules/@angular/cdk/_a11y.scss';
+@import "../../../../../../node_modules/@angular/cdk/_overlay.scss";
+@include cdk-overlay();
+
+.ngs-tooltip-panel {
+  // The overlay reference updates the pointer-events style property directly on the HTMLElement
+  // depending on the state of the overlay. For tooltips the overlay panel should never enable
+  // pointer events. To overwrite the inline CSS from the overlay reference `!important` is needed.
+  pointer-events: none !important;
+}
+
+.ngs-tooltip {
+  color: white;
+  border-radius: 2px;
+  margin: $unit-3;
+  max-width: $control-width-sm;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: $font-size-sm;
+  padding: $unit-1 $unit-2;
+  background: $gray-color-dark;
+   @include cdk-high-contrast {
+     outline: solid 1px;
+   }
+}
+
+.ngs-tooltip-handset {
+  margin: $unit-4;
+}
