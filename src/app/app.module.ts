@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AutoCompleteModule, ChipModule, FormInputModule, NgsDirectivesModule, PaginationModule, TooltipModule } from 'angular-spectre';
+import {
+  AutoCompleteModule,
+  ChipModule, FormInputModule, NgsDirectivesModule, PaginationModule, TooltipModule
+} from 'angular-spectre';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,10 +22,25 @@ import { BadgeComponent } from './badge/badge.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PaginationComponent, LandingComponent, TooltipBasicComponent, TooltipComponent, BadgeComponent, AutoCompleteComponent, ChipComponent
+    AppComponent,
+    PaginationComponent,
+    LandingComponent,
+    TooltipBasicComponent,
+    TooltipComponent,
+    BadgeComponent,
+    AutoCompleteComponent,
+    ChipComponent
   ],
   imports: [
-    BrowserModule, PaginationModule, AppRoutingModule, BrowserAnimationsModule, FormInputModule, AutoCompleteModule, ChipModule, TooltipModule, NgsDirectivesModule
+    BrowserModule,
+    PaginationModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormInputModule,
+    AutoCompleteModule,
+    ChipModule,
+    TooltipModule,
+    NgsDirectivesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
