@@ -12,4 +12,4 @@ export class LabelDirective {
     declarations: [LabelDirective],
     exports: [LabelDirective]
 })
-export class NGSLabelModule { }
+export class NgsLabelModule { }

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AutoCompleteModule, ChipModule, FormInputModule, NgsDirectivesModule, PaginationModule, TooltipModule } from 'angular-spectre';
+import { NgsAutoCompleteModule, NgsBadgeModule, NgsButtonModule, NgsChipModule,
+FormInputModule, NgsIconsModule, NgsPaginationModule, NgsTooltipModule, TooltipModule } from 'angular-spectre';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,13 +17,17 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BadgeComponent } from './badge/badge.component';
+import { ButtonComponent } from './button/button.component';
+import { IconsComponent } from './icons/icons.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PaginationComponent, LandingComponent, TooltipBasicComponent, TooltipComponent, BadgeComponent, AutoCompleteComponent, ChipComponent
+    AppComponent, PaginationComponent, LandingComponent, TooltipBasicComponent,
+    TooltipComponent, BadgeComponent, AutoCompleteComponent, ChipComponent, ButtonComponent, IconsComponent
   ],
   imports: [
-    BrowserModule, PaginationModule, AppRoutingModule, BrowserAnimationsModule, FormInputModule, AutoCompleteModule, ChipModule, TooltipModule, NgsDirectivesModule
+    BrowserModule, NgsPaginationModule, AppRoutingModule, BrowserAnimationsModule, FormInputModule,
+    NgsAutoCompleteModule, NgsChipModule, NgsBadgeModule, NgsButtonModule, NgsIconsModule, NgsTooltipModule, TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

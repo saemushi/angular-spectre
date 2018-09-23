@@ -1,10 +1,10 @@
-import { AutoCompleteModule } from './auto-complete.module';
+import { NgsAutoCompleteModule } from './auto-complete.module';
 
 describe('AutoCompleteModule', () => {
-  let autoCompleteModule: AutoCompleteModule;
+  let autoCompleteModule: NgsAutoCompleteModule;
 
   beforeEach(() => {
-    autoCompleteModule = new AutoCompleteModule();
+    autoCompleteModule = new NgsAutoCompleteModule();
   });
 
   it('should create an instance', () => {

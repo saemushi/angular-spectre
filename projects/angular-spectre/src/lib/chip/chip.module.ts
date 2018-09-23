@@ -9,4 +9,4 @@ import { ChipComponent } from './chip.component';
   declarations: [ChipComponent],
   exports: [ChipComponent]
 })
-export class ChipModule { }
+export class NgsChipModule { }
