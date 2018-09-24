@@ -5,5 +5,6 @@ export const routes = [
   { path: 'tooltipBasic', name: 'Tooltip-Basic'},
   { path: 'auto-complete', name: 'Auto Complete'},
   { path: 'form-input', name: 'Form Input'},
-  { path: 'chip', name: 'Chip'}
+  { path: 'chip', name: 'Chip'},
+  { path: 'avatar', name: 'Avatar'}
 ];

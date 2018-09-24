@@ -1,0 +1,15 @@
+<ng-template #imageTemplate>
+  <figure [class]="classes" [attr.data-initial]="initials" [style.borderRadius]="squareShape" [style.backgroundColor]="bgColor" 
+  [style.backgroundImage]="background && getSrcUrl()"[style.color]="color">
+    <img *ngIf="src && !background" [src]="src">
+    <ng-container *ngTemplateOutlet="presenceTemplate"></ng-container>
+  </figure>
+</ng-template>
+
+<ng-template #presenceTemplate>
+    <i *ngIf="status" class="avatar-presence" [ngClass]="status"></i>
+    <img *ngIf="statusImage" [src]="statusImage" class="avatar-icon">
+</ng-template>
+
+<ng-container *ngTemplateOutlet="template"></ng-container>
+<ng-content></ng-content>

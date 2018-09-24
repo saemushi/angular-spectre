@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-  AutoCompleteModule,
-  ChipModule, FormInputModule, NgsDirectivesModule, PaginationModule, TooltipModule
-} from 'angular-spectre';
+import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,12 +11,10 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { LandingComponent } from './landing/landing.component';
 import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 import { ChipComponent } from './chip/chip.component';
-
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BadgeComponent } from './badge/badge.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -29,18 +25,14 @@ import { BadgeComponent } from './badge/badge.component';
     TooltipComponent,
     BadgeComponent,
     AutoCompleteComponent,
-    ChipComponent
+    ChipComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
-    PaginationModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormInputModule,
-    AutoCompleteModule,
-    ChipModule,
-    TooltipModule,
-    NgsDirectivesModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

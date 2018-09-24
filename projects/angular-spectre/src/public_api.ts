@@ -26,3 +26,5 @@ export * from './lib/chip/chip.module';
 
 
 export * from './lib/form-input/form-input.component';
+
+export * from './lib/avatar/avatar.component';
