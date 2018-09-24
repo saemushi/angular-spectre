@@ -15,6 +15,8 @@ import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { BadgeComponent } from './badge/badge.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { ButtonComponent } from './button/button.component';
+import { IconsComponent } from './icons/icons.component';
 
 @NgModule({
   declarations: [

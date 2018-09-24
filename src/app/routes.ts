@@ -6,5 +6,6 @@ export const routes = [
   { path: 'auto-complete', name: 'Auto Complete'},
   { path: 'form-input', name: 'Form Input'},
   { path: 'chip', name: 'Chip'},
+  { path: 'icons', name: 'Icons'},
   { path: 'avatar', name: 'Avatar'}
 ];
