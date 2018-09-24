@@ -6,9 +6,9 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { LandingComponent } from './landing/landing.component';
 import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 import { ChipComponent } from './chip/chip.component';
-
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'tooltipBasic', component: TooltipBasicComponent },
   { path: 'auto-complete', component: AutoCompleteComponent },
   { path: 'form-input', component: AutoCompleteComponent },
-  { path: 'chip', component: ChipComponent }
+  { path: 'chip', component: ChipComponent },
+  { path: 'avatar', component: AvatarComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
