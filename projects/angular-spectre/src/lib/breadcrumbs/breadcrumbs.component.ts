@@ -1,15 +1,16 @@
 import { Directive, ElementRef, OnInit, Input, Renderer2, Component } from '@angular/core';
 
-export interface breadcrumbsObject{
+export class BreadcrumbsObject {
   title: string;
   link: string;
+  tooltip: string;
 }
 
 @Component({
-  selector: '[ngsBreadcrumbs]',
+  selector: 'ngs-breadcrumbs',
   templateUrl: './breadcrumbs.component.html'
 })
 
 export class NgsBreadcrumbsComponent {
-  @Input('data') ngsData:breadcrumbsObject;
+  @Input('data') ngsData: BreadcrumbsObject[];
 }
