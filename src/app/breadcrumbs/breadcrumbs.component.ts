@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  breadcrumbsData1: any =  [ {title: 'Home', link: 'https://google.com'} ,{title: 'About', link: 'https://google.com'} ];
+  breadcrumbsData1: any =  [ {title: 'Home', link: 'https://google.com'}, {title: 'About', link: 'https://google.com'} ];
 
-  breadcrumbsData2: any =  [ {title: 'Home', link: 'https://google.com'}, {title: 'About', link: 'https://google.com'}, {title: 'Contact', link: 'https://google.com'} ];
+  breadcrumbsData2: any =  [ {title: 'Home', link: 'https://google.com'}, {title: 'About', link: 'https://google.com'},
+  {title: 'Contact', link: 'https://google.com'} ];
 
   constructor() { }
 
