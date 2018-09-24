@@ -1,22 +1,32 @@
 import { NgModule } from '@angular/core';
 import {
-    PaginationModule,
+    NgsAccordionModule,
+    NgsAutoCompleteModule,
+    NgsAvatarModule,
+    NgsBadgeModule,
+    NgsBreadcrumbsModule,
+    NgsButtonModule,
+    NgsChipModule,
+    NgsIconsModule,
+    NgsPaginationModule,
     FormInputModule,
-    AutoCompleteModule,
-    ChipModule,
-    TooltipModule,
-    NgsDirectivesModule,
-    NgsAvatarModule
+    NgsTooltipModule,
+    TooltipModule
 } from 'angular-spectre';
 
 const ngsModules = [
-    PaginationModule,
+    NgsAccordionModule,
+    NgsAutoCompleteModule,
+    NgsAvatarModule,
+    NgsBadgeModule,
+    NgsBreadcrumbsModule,
+    NgsButtonModule,
+    NgsChipModule,
+    NgsIconsModule,
+    NgsPaginationModule,
     FormInputModule,
-    AutoCompleteModule,
-    ChipModule,
-    TooltipModule,
-    NgsDirectivesModule,
-    NgsAvatarModule
+    NgsTooltipModule,
+    TooltipModule
 ];
 
 @NgModule({
