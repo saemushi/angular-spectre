@@ -1,0 +1,29 @@
+<div *ngIf="(accordionObject) then ngs_accordion_multiple else ngs_accordion_single"></div>
+<ng-template #ngs_accordion_single>
+  <div class="accordion">
+    <input type="checkbox" id="ngs-accordion-{{accordionCount}}" name="accordion-checkbox" hidden *ngIf="!mutuallyExclusive">
+    <input type="radio" id="ngs-accordion-{{accordionCount}}" name="accordion-radio" hidden *ngIf="mutuallyExclusive">
+    <label class="accordion-header" for="ngs-accordion-{{accordionCount}}">
+      <i class="icon icon-arrow-right mr-1" *ngIf="arrowIcon"></i>
+      {{accordionTitle}}
+    </label>
+    <div class="accordion-body ngs-accordion-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>
+<ng-template #ngs_accordion_multiple>
+  <div class="accordion" *ngFor="let acc of accordionObject; let i = index">
+    <input type="checkbox" id="ngs-accordion-{{accordionCount}}{{i}}" name="accordion-checkbox" hidden *ngIf="!acc.mutuallyExclusive">
+    <input type="radio" id="ngs-accordion-{{accordionCount}}{{i}}" name="accordion-radio" hidden *ngIf="acc.mutuallyExclusive">
+    <label class="accordion-header" for="ngs-accordion-{{accordionCount}}{{i}}">
+      <i class="icon icon-arrow-right mr-1" *ngIf="acc.arrowIcon"></i>
+      {{acc.accordionTitle}}
+    </label>
+    <div class="accordion-body ngs-accordion-body">
+      <div class="">
+      {{acc.accordionBody}}
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -8,4 +8,4 @@ import { PaginationComponent } from './pagination.component';
   declarations: [PaginationComponent],
   exports: [PaginationComponent]
 })
-export class PaginationModule { }
+export class NgsPaginationModule { }
