@@ -4,6 +4,7 @@ const range = (start, length) => {
   const a = Array(length);
   return [...Array(length)].map((_, i) => start + i);
 };
+
 const MAX_VISIBLE_PAGES = 7;
 const PAGER_ICONS = true;
 

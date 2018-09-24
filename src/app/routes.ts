@@ -1,6 +1,5 @@
 export const routes = [
   { path: 'badge', name: 'Badge'},
-  { path: 'button', name: 'Button'},
   { path: 'pagination', name: 'Pagination'},
   { path: 'tooltip', name: 'Tooltip'},
   { path: 'tooltipBasic', name: 'Tooltip-Basic'},
@@ -8,4 +7,5 @@ export const routes = [
   { path: 'form-input', name: 'Form Input'},
   { path: 'chip', name: 'Chip'},
   { path: 'icons', name: 'Icons'},
+  { path: 'avatar', name: 'Avatar'}
 ];
