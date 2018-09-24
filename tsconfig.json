@@ -19,10 +19,8 @@
     "paths": {
       "angular-spectre": [
         "dist/angular-spectre"
-      ],
-      "angular-spectre/*": [
-        "dist/angular-spectre/*"
       ]
     }
-  }
+  },
+  "exclude": ["dist"]
 }
