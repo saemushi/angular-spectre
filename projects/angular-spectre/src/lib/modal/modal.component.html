@@ -1,0 +1,28 @@
+<div tabindex="0" #modal ngsToggle class="ngs-modal active {{classes}}" (click)="onModalSelected($event)">
+  <a class="modal-overlay" aria-label="Close"></a>
+  <div #modalWindow class="modal-container" [attr.role]="role" [attr.aria-labelledby]="titleId">
+
+    <div class="modal-header" *ngIf="title" [attr.id]="titleId">
+      <a class="btn btn-clear float-right" aria-label="Close" (click)="close()"></a>
+      <div class="modal-title h5">{{ title }}</div>
+    </div>
+    <ng-content *ngIf="!title" select="ngs-modal-title,[ngsModalTitle]"></ng-content>
+
+    <div class="modal-body" *ngIf="message">
+      <div class="content">
+        {{ message }}
+      </div>
+    </div>
+    <ng-content *ngIf="!message"></ng-content>
+
+    <div *ngIf="leftButtonLabel || rightButtonLabel" class="modal-footer">
+      <button *ngIf="leftButtonLabel" type="button" ngsButton color="leftButtonColor" (click)="onInternalLeftButtonSelect($event)">
+        {{ leftButtonLabel }}
+      </button>
+      <button *ngIf="rightButtonLabel" type="button" ngsButton color="rightButtonColor" (click)="onInternalRightButtonSelect($event)">
+        {{ rightButtonLabel }}
+      </button>
+    </div>
+    <ng-content *ngIf="!leftButtonLabel && !rightButtonLabel" select="ngs-modal-actions,[ngsModalActions]"></ng-content>
+  </div>
+</div>
