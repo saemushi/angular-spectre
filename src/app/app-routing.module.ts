@@ -7,7 +7,9 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { BadgeComponent } from './badge/badge.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
+import { CardComponent } from './card/card.component';
 import { ChipComponent } from './chip/chip.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { LandingComponent } from './landing/landing.component';
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'badge', component: BadgeComponent },
   { path: 'breadcrumbs', component: BreadcrumbsComponent },
   { path: 'button', component: ButtonComponent },
+  { path: 'card', component: CardComponent },
   { path: 'chip', component: ChipComponent },
+  { path: 'empty-state', component: EmptyStateComponent },
   { path: 'icons', component: IconsComponent },
   { path: 'pagination', component: PaginationComponent },
   { path: 'tooltip', component: TooltipComponent },
