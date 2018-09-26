@@ -1,0 +1,15 @@
+<div *ngIf="breadcrumbsData then showObjectData else hideObjectData"></div>
+
+<ng-template #showObjectData>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item" *ngFor="let data of breadcrumbsData">
+            <a [href]="data.link" [ngClass]="data.tooltip ? 'tooltip' : ''" [attr.data-tooltip]="data.tooltip ? data.tooltip : ''">{{data.title}}</a>
+        </li>
+    </ul>
+</ng-template>
+
+<ng-template #hideObjectData>
+    <ul class="breadcrumb">
+        <ng-content></ng-content>
+    </ul>
+</ng-template>
