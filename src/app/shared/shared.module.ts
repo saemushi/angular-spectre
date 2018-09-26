@@ -13,7 +13,9 @@ import {
     NgsPaginationModule,
     FormInputModule,
     NgsTooltipModule,
-    TooltipModule
+    TooltipModule,
+    NgsModalModule,
+    NgsToggleModule
 } from 'angular-spectre';
 
 const ngsModules = [
@@ -30,7 +32,9 @@ const ngsModules = [
     NgsPaginationModule,
     FormInputModule,
     NgsTooltipModule,
-    TooltipModule
+    TooltipModule,
+    NgsModalModule,
+    NgsToggleModule
 ];
 
 @NgModule({
