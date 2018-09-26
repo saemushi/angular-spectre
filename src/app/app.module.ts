@@ -16,6 +16,8 @@ import { BadgeComponent } from './badge/badge.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { ChipComponent } from './chip/chip.component';
+import { CardComponent } from './card/card.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
@@ -32,6 +34,8 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     ButtonComponent,
     BreadcrumbsComponent,
     ChipComponent,
+    CardComponent,
+    EmptyStateComponent,
     IconsComponent,
     PaginationComponent,
     TooltipBasicComponent,
