@@ -20,16 +20,22 @@ export * from './lib/breadcrumbs/breadcrumbs.module';
 
 export * from './lib/button/button.directive';
 export * from './lib/button/button.module';
+<<<<<<< HEAD
 
 export * from './lib/card/card';
 export * from './lib/card/card.module';
+=======
+>>>>>>> upstream/develop
 
 export * from './lib/chip/chip.component';
 export * from './lib/chip/chip.module';
 
+<<<<<<< HEAD
 export * from './lib/emptyState/emptyState';
 export * from './lib/emptyState/emptyState.module';
 
+=======
+>>>>>>> upstream/develop
 export * from './lib/form-input/form-input.component';
 
 export * from './lib/icons/icons.component';

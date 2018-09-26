@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BreadcrumbsObject } from 'projects/angular-spectre/src';
 
+
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
