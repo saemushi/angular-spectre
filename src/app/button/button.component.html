@@ -46,14 +46,20 @@
       <h5>FAB</h5>
       <div class="columns">
         <div class="coulumn col-3">
-          <button ngsButton color="primary" fab="true" size="sm"><i class="icon icon-arrow-left"></i></button>
+          <button ngsButton color="primary" fab="true" size="sm">
+            <i class="icon icon-arrow-left"></i>
+          </button>
         </div>
         <div class="coulumn col-3">
-            <button ngsButton color="primary" fab="true" size="md"><i class="icon icon-menu"></i></button>
-          </div>
-          <div class="coulumn col-3">
-            <button ngsButton color="primary" fab="true" size="lg"><i class="icon icon-menu"></i></button>
-          </div>
+          <button ngsButton color="primary" fab="true" size="md">
+            <i class="icon icon-menu"></i>
+          </button>
+        </div>
+        <div class="coulumn col-3">
+          <button ngsButton color="primary" fab="true" size="lg">
+            <i class="icon icon-menu"></i>
+          </button>
+        </div>
       </div>
 
       <br>
@@ -66,6 +72,41 @@
         <div class="coulumn col-3">
           <button ngsButton color="primary" size="sm" active="true">Button - Active</button>
         </div>
+      </div>
+
+      <br>
+      <br>
+      <h5>Button - Loading</h5>
+      <div class="columns">
+        <div class="coulumn col-3">
+          <button ngsButton color="primary" size="sm" loading="true">Button - Loading</button>
+        </div>
+        <div class="coulumn col-3">
+          <button ngsButton color="default" size="sm" loading="true">Button - Loading</button>
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <h5>Button Groups</h5>
+      <div class="columns">
+
+        <div class="coulumn col-6">
+          <ngs-btn-group>
+            <button ngsButton size="sm">Button - 1</button>
+            <button ngsButton size="sm">Button - 2</button>
+            <button ngsButton size="sm">Button - 3</button>
+          </ngs-btn-group>
+        </div>
+
+        <div class="coulumn col-6">
+          <ngs-btn-group block="true">
+            <button ngsButton color="primary" size="sm" active="true">Button - 1</button>
+            <button ngsButton color="primary" size="sm">Button - 2</button>
+            <button ngsButton color="primary" size="sm">Button - 3</button>
+          </ngs-btn-group>
+        </div>
+
       </div>
 
     </div>

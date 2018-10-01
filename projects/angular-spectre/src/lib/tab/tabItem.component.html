@@ -1,0 +1,10 @@
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
+
+<a *ngIf="linkExists; else hideLink" href="{{link}}">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</a>
+<ng-template #hideLink>
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</ng-template>

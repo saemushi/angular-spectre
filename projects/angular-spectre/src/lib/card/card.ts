@@ -12,14 +12,14 @@ export class NgsCardComponent {
   selector: 'ngs-card-title, ngsCardTitle, [ngsCardTitle], [ngs-card-title]',
 })
 export class NgsCardTitleDirective {
-  @HostBinding('class') class = 'card-title h5';
+  @HostBinding('class') class = 'card-title';
 }
 
 @Directive({
   selector: 'ngs-card-subtitle, ngsCardSubtitle, [ngsCardSubtitle], [ngs-card-subtitle]',
 })
 export class NgsCardSubtitleDirective {
-  @HostBinding('class') class = 'card-subtitle text-gray';
+  @HostBinding('class') class = 'card-subtitle';
 }
 
 @Directive({

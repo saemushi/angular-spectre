@@ -13,6 +13,7 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { BadgeComponent } from './badge/badge.component';
+import { BarComponent } from './bar/bar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { ChipComponent } from './chip/chip.component';
@@ -20,9 +21,15 @@ import { CardComponent } from './card/card.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PanelComponent } from './panel/panel.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
+import { TileComponent } from './tile/tile.component';
+import { NavComponent } from './nav/nav.component';
+import { StepComponent } from './step/step.component';
+import { PopoverComponent } from './popover/popover.component';
+import { TabComponent } from './tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +46,16 @@ import { ModalComponent } from './modal/modal.component';
     EmptyStateComponent,
     IconsComponent,
     PaginationComponent,
+    PanelComponent,
     TooltipBasicComponent,
     TooltipComponent,
-    ModalComponent
+    ModalComponent,
+    TileComponent,
+    NavComponent,
+    StepComponent,
+    PopoverComponent,
+    TabComponent,
+    BarComponent
   ],
   imports: [
     BrowserModule,

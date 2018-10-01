@@ -4,18 +4,25 @@ import {
     NgsAutoCompleteModule,
     NgsAvatarModule,
     NgsBadgeModule,
+    NgsBarModule,
     NgsBreadcrumbsModule,
     NgsButtonModule,
     NgsCardModule,
     NgsChipModule,
     NgsEmptyStateModule,
     NgsIconsModule,
+    NgsModalModule,
+    NgsNavModule,
     NgsPaginationModule,
+    NgsPanelModule,
+    NgsPopoverModule,
     FormInputModule,
+    NgsStepModule,
+    NgsTabModule,
+    NgsTileModule,
+    NgsToggleModule,
     NgsTooltipModule,
     TooltipModule,
-    NgsModalModule,
-    NgsToggleModule
 } from 'angular-spectre';
 
 const ngsModules = [
@@ -23,22 +30,29 @@ const ngsModules = [
     NgsAutoCompleteModule,
     NgsAvatarModule,
     NgsBadgeModule,
+    NgsBarModule,
     NgsBreadcrumbsModule,
     NgsButtonModule,
     NgsCardModule,
     NgsChipModule,
     NgsEmptyStateModule,
     NgsIconsModule,
-    NgsPaginationModule,
-    FormInputModule,
-    NgsTooltipModule,
-    TooltipModule,
     NgsModalModule,
-    NgsToggleModule
+    NgsNavModule,
+    NgsPaginationModule,
+    NgsPanelModule,
+    NgsPopoverModule,
+    FormInputModule,
+    NgsStepModule,
+    NgsTabModule,
+    NgsTileModule,
+    NgsToggleModule,
+    NgsTooltipModule,
+    TooltipModule
 ];
 
 @NgModule({
     imports: ngsModules,
     exports: ngsModules
 })
-export class SharedModule {}
+export class SharedModule { }

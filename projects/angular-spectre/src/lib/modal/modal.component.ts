@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { NgsButtonModule } from '../button/button.module';
+import { NgsButtonModule } from '../button/button.directive';
 import { NgsModalActionsDirective, NgsModalTitleDirective, NgsModalContentDirective } from './model.directives';
 import { NgsToggleModule, NgsToggleDirective } from '../toggle/toggle.directive';
 import { OverlaySettings } from '../services/overly-settings';
