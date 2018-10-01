@@ -13,7 +13,10 @@ import {
     ViewContainerRef,
     Component,
     Renderer2,
-    InjectionToken
+    InjectionToken,
+    OnInit,
+    HostListener,
+    TemplateRef
 } from '@angular/core';
 import { Location } from '@angular/common';
 import {
@@ -21,9 +24,12 @@ import {
     OverlayConfig,
     OverlayRef,
     ScrollStrategy,
+    NoopScrollStrategy,
+    FlexibleConnectedPositionStrategy,
 } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { OverlaySettings } from '../services/overly-settings';
+import { OverlayService } from './../services/overlay-service';
 
 export const NGS_DIALOG_DEFAULT_OPTIONS =
     new InjectionToken<OverlaySettings>('mat-dialog-default-options');
@@ -34,7 +40,7 @@ export function SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
 }
 
 export const NGS_TOGGLE_SCROLL_STRATEGY =
-    new InjectionToken<() => ScrollStrategy>('mat-dialog-scroll-strategy');
+    new InjectionToken<() => ScrollStrategy>('ngs-toggle-scroll-strategy');
 
 export function NGS_TOGGLE_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay):
     () => ScrollStrategy {
@@ -67,9 +73,9 @@ export class ToggleComponent {
     selector: '[ngsToggle]'
 })
 export class NgsToggleDirective implements OnDestroy {
-    _overlayRef: OverlayRef | null;
+    public _overlayRef: OverlayRef | null;
     _toggleInstance: ToggleComponent | null;
-
+    _defaultOverlaySettings: OverlaySettings;
     /**
      * Emits an event after the toggle container is opened.
      *
@@ -184,10 +190,15 @@ export class NgsToggleDirective implements OnDestroy {
         private elementRef: ElementRef,
         private _overlay: Overlay,
         @Optional() private _location: Location,
+        private overlayService: OverlayService,
         private viewContainerRef: ViewContainerRef,
         private cdr: ChangeDetectorRef,
         @Inject(NGS_TOGGLE_SCROLL_STRATEGY) private _scrollStrategy,
     ) {
+        this._defaultOverlaySettings = new OverlaySettings({
+            positionStrategy: this._overlay.position().global().centerHorizontally().centerVertically(),
+            scrollStrategy: this._scrollStrategy(),
+        });
     }
 
     /**
@@ -197,37 +208,34 @@ export class NgsToggleDirective implements OnDestroy {
      * this.myToggle.open();
      * ```
      */
-    public open(overlayConfig: OverlaySettings = {}) {
+    public open(overlayConfig: OverlaySettings = this._defaultOverlaySettings) {
         this._collapsed = false;
         this.cdr.detectChanges();
         this._detach();
         this.onOpening.emit();
-        this._overlayRef = this._createOverlay(overlayConfig);
-        this._attachContainer(this._overlayRef);
-        this._attachListeners(this._overlayRef, overlayConfig);
+        const settings = this.overlayService.getOverlaySettings(this._defaultOverlaySettings, overlayConfig);
+        this._overlayRef = this._createOverlay(settings);
+        this._attachContainer(this._overlayRef, settings);
+        this._attachListeners(this._overlayRef, settings);
     }
 
     private _createOverlay(config: OverlaySettings): OverlayRef {
-        const overlayConfig = this._getOverlayConfig(config);
-        return this._overlay.create(overlayConfig);
+        const overlayRef = this.overlayService.createOverlay(config);
+        if (config.positionStrategy instanceof FlexibleConnectedPositionStrategy) {
+            this.overlayService.setPosition(config.positionStrategy, config);
+        }
+        return overlayRef;
     }
 
-    private _getOverlayConfig(config: OverlaySettings): OverlayConfig {
-        const state = new OverlayConfig({
-            positionStrategy: this._overlay.position().global()
-                .centerHorizontally()
-                .centerVertically(),
-            scrollStrategy: config.scrollStrategy || this._scrollStrategy(),
-            hasBackdrop: config.hasBackdrop
-        });
-        return state;
-    }
-
-    private _attachContainer(overlay: OverlayRef) {
-        const containerPortal =
-            new ComponentPortal(ToggleComponent, this.viewContainerRef);
-        this._toggleInstance = overlay.attach(containerPortal).instance;
-        this._toggleInstance.content = this.elementRef.nativeElement;
+    private _attachContainer(overlay: OverlayRef, settings: OverlaySettings) {
+        if (settings.portal instanceof TemplatePortal) {
+            overlay.attach(settings.portal);
+        } else {
+            const containerPortal =
+                new ComponentPortal(ToggleComponent, this.viewContainerRef);
+            this._toggleInstance = overlay.attach(containerPortal).instance;
+            this._toggleInstance.content = this.elementRef.nativeElement;
+        }
     }
 
     private _attachListeners(overlayRef: OverlayRef, config: OverlaySettings) {
@@ -241,7 +249,7 @@ export class NgsToggleDirective implements OnDestroy {
         // TODO: CDK gave option to closeOnNavigation in latest release need to change it
         this._location.subscribe(() => {
             if (config.closeOnNavigation) {
-              this.close();
+                this.close();
             }
         });
         this.onOpened.emit();
@@ -292,9 +300,70 @@ export class NgsToggleDirective implements OnDestroy {
 
 }
 
+@Directive({
+    exportAs: 'toggle-action',
+    selector: '[ngsToggleAction]'
+})
+export class NgsToggleActionDirective implements OnInit {
+    _overlayDefaults: OverlaySettings;
+    _target: any;
+
+    /**
+     * Provide settings that control the toggle overlay positioning, interaction and scroll behavior.
+     * ```typescript
+     * const settings: OverlaySettings = {
+     *      closeOnOutsideClick: false,
+     *  }
+     * ```
+     * ---
+     * ```html
+     * <!--set-->
+     * <div ngsToggleAction [overlaySettings]="settings"></div>
+     * ```
+     */
+    @Input()
+    public overlaySettings: OverlaySettings;
+    /**
+     * @hidden
+     */
+    @Input('ngsToggleAction')
+    set target(target: any) {
+        if (target !== null && target !== '') {
+            this._target = target;
+        }
+    }
+
+    /**
+     * @hidden
+     */
+    get target(): any {
+        return this._target;
+    }
+
+    constructor(private _elementRef: ElementRef, private _overlay: Overlay, ) { }
+
+
+    public ngOnInit() {
+        this._overlayDefaults = new OverlaySettings({
+            elementRef: this._elementRef,
+        });
+    }
+
+    @HostListener('click')
+    public onClick() {
+        if (this.target.toggle) {
+            this._overlayDefaults.scrollStrategy = this._overlay.scrollStrategies.reposition();
+            this._overlayDefaults.positionStrategy = this._overlay.position().flexibleConnectedTo(this._elementRef)
+                .withFlexibleDimensions(false)
+                .withPush(false);
+            this.target.toggle(Object.assign({}, this._overlayDefaults, this.overlaySettings));
+        }
+    }
+
+}
 @NgModule({
-    declarations: [NgsToggleDirective, ToggleComponent],
-    exports: [NgsToggleDirective],
+    declarations: [NgsToggleDirective, ToggleComponent, NgsToggleActionDirective],
+    exports: [NgsToggleDirective, NgsToggleActionDirective],
     providers: [NGS_TOGGLE_SCROLL_STRATEGY_PROVIDER],
     entryComponents: [ToggleComponent]
 })

@@ -16,6 +16,7 @@ import { LandingComponent } from './landing/landing.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'pagination', component: PaginationComponent },
   { path: 'tooltip', component: TooltipComponent },
   { path: 'tooltipBasic', component: TooltipBasicComponent },
-  { path: 'modal', component: ModalComponent }
+  { path: 'modal', component: ModalComponent },
+  { path: 'menu', component: MenuComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
