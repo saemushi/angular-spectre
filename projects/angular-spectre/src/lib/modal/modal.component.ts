@@ -276,17 +276,6 @@ export class NgsModalComponent implements AfterContentInit {
     return this.isOpen ? 'open' : 'close';
   }
 
-  /**
-   * Returns whether the modal is visible to the end user.
-   *```typescript
-   *@ViewChild("MyModal")
-   *public modal: NgsModalComponent;
-   *ngAfterViewInit() {
-   *    let modalOpen = this.modal.isOpen;
-   *}
-   * ```
-   */
-  @Input()
   get isOpen() {
     return !this.toggleRef.collapsed;
   }

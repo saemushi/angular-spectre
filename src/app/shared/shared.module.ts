@@ -15,7 +15,8 @@ import {
     NgsTooltipModule,
     TooltipModule,
     NgsModalModule,
-    NgsToggleModule
+    NgsToggleModule,
+    NgsMenuModule
 } from 'angular-spectre';
 
 const ngsModules = [
@@ -34,7 +35,8 @@ const ngsModules = [
     NgsTooltipModule,
     TooltipModule,
     NgsModalModule,
-    NgsToggleModule
+    NgsToggleModule,
+    NgsMenuModule
 ];
 
 @NgModule({

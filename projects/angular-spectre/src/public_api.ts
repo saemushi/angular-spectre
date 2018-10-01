@@ -49,3 +49,5 @@ export * from './lib/tooltip-old/tooltip.module';
 
 export * from './lib/modal/modal.component';
 export * from './lib/toggle/toggle.directive';
+
+export * from './lib/menu/menu.component';

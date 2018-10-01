@@ -23,6 +23,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ModalComponent } from './modal/modal.component';
     PaginationComponent,
     TooltipBasicComponent,
     TooltipComponent,
-    ModalComponent
+    ModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
