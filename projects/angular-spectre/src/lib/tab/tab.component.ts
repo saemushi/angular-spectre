@@ -1,110 +1,62 @@
 import { CommonModule } from '@angular/common'; 
-import { Component, OnInit, Directive, HostBinding, Input, NgModule } from '@angular/core';
-
-/**
- * Example:
- * <ngs-tab>
- *      <ngs-tab-item active="true">
- *        <a href="#" ngsBadge="8">Music</a>
- *      </ngs-tab-item>
- *      <ngs-tab-item>
- *        <a href="#">Art</a>
- *      </ngs-tab-item>
- *      <ngs-tab-item>
- *        <a href="#">Dance</a>
- *      </ngs-tab-item>
- *    </ngs-tab>
- */
+import { Component, OnInit, Directive, HostBinding, Input, Output, NgModule, EventEmitter, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'ngs-tab',
-    template: '<ng-content></ng-content>'
+    templateUrl: 'tab.component.html'
 })
 export class NgsTabComponent {
-    
-    /**
-    * An @HostBinding property that adds tab class to the tag.
-    *```html
-    *<ngs-tab>
-    *   <ngs-tab-item active="true">
-    *       <a href="#" ngsBadge="8">Music</a>
-    *   </ngs-tab-item>
-    * </ngs-tab>
-    *```
-    */
-    @HostBinding('class.tab') tab = true;
+    fullWidth: boolean = false;
+    tabContent: any = '';
+    @Input('fullWidth')
+    get tabBlock(): boolean{
+        return this.fullWidth;
+    }
+    set tabBlock(value: boolean){
+        this.fullWidth = value;
+    }
 
+    getTabContent($event){
+        this.tabContent = $event;
+        console.log(this.tabContent);
+    }
 
-    /**
-    * An @HostBinding property that adds tab-block class to the tag.
-    *```html
-    *<ngs-tab fullWidth="true">
-    *   <ngs-tab-item active="true">
-    *       <a href="#" ngsBadge="8">Music</a>
-    *   </ngs-tab-item>
-    * </ngs-tab>
-    *```
-    */
-    @HostBinding('class.tab-block') @Input('fullWidth') fullWidth: boolean = false;
 }
 
 @Component({
     selector: 'ngs-tab-item',
-    template: '<ng-content></ng-content>'
+    templateUrl: 'tabItem.component.html'
 })
-export class NgsTabItemComponent {
+export class NgsTabItemComponent implements OnInit{
 
-    // link: string = '';
-    // linkExists: boolean = false;
+    static tabCount: number = 0;
+    title: string = '';
+    tabContent: string = '';
 
+    @Output() tabEvent: EventEmitter<string> = new EventEmitter<string>();
 
-    /**
-    * An @HostBinding property that adds tab-item class to the tag.
-    *```html
-    *<ngs-tab>
-    *   <ngs-tab-item>
-    *       <a href="#" ngsBadge="8">Music</a>
-    *   </ngs-tab-item>
-    * </ngs-tab>
-    *```
-    */
     @HostBinding('class.tab-item') tabItem = true;
+    @HostBinding('class.active') @Input('active') active = false;
+    @HostBinding('class.tab-action') @Input('tabAction') action = false;
+    @HostListener('click')
+    changeTabContent(){
+        this.tabEvent.emit(this.ele.nativeElement.id);
+    }
 
-
-    /**
-    * An @HostBinding property that adds active class to the tag. Represents the active tab item.
-    *```html
-    *<ngs-tab>
-    *   <ngs-tab-item active="true">
-    *       <a href="#" ngsBadge="8">Music</a>
-    *   </ngs-tab-item>
-    * </ngs-tab>
-    *```
-    */
-    @HostBinding('class.active') @Input('active') activeItem: boolean = false;
-
-
-    /**
-    * An @HostBinding property that adds tab-action class to the tag.
-    *```html
-    *<ngs-tab>
-    *   <ngs-tab-item>
-    *       <a href="#" ngsBadge="8">Music</a>
-    *   </ngs-tab-item>
-    * </ngs-tab>
-    *```
-    */
-    @HostBinding('class.tab-action') @Input('tabAction') tabAction: boolean = false;
+    @Input('title') 
+    set tabTitle(value: string){
+        this.title = value;
+    }
+    get tabTitle(): string{
+        return this.title;
+    }
     
-    // @Input('link')
-    // get addLink(): string{
-    //     return this.link;
-    // } 
-    // set addLink(value: string){
-    //     this.link = value;
-    //     if(value != "")
-    //         this.linkExists = true;
-    // }
+    constructor(private ele: ElementRef, private renderer: Renderer2) { }
+
+    ngOnInit(){
+        this.renderer.setAttribute(this.ele.nativeElement, 'id', `ngsTab_${NgsTabItemComponent.tabCount}`);
+        NgsTabItemComponent.tabCount++;
+    }
 
 }
 

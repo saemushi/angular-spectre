@@ -1,10 +1,11 @@
-<ng-template #content>
+<ng-template #ngsTab_{{tabCount}}>
     <ng-content></ng-content>
 </ng-template>
 
-<a *ngIf="linkExists; else hideLink" href="{{link}}">
+<!-- <a *ngIf="linkExists; else hideLink" href="{{link}}" (click)="changeTab($event)">
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </a>
 <ng-template #hideLink>
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-</ng-template>
+    <ng-container *ngTemplateOutlet="content" (click)="changeTab($event)"></ng-container>
+</ng-template> -->
+<a>{{title}}</a>

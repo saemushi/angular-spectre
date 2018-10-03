@@ -1,8 +1,22 @@
 <div class="container">
   <div class="columns">
     <div class="column col-6">
+      <ngs-bar size="sm">
+        <div ngsBarItem barWidth="50"></div>
+      </ngs-bar>
+      <br>
       <ngs-bar>
-        <div ngs-bar-item width="50" color="red">50%</div>
+        <div ngsBarItem barWidth="50">50%</div>
+      </ngs-bar>
+      <br>
+      <ngs-bar>
+        <div ngsBarItem barWidth="25" barColor="red">25%</div>
+        <div ngsBarItem barWidth="25" barColor="green">25%</div>
+        <div ngsBarItem barWidth="50" barColor="blue">50%</div>
+      </ngs-bar>
+      <br>
+      <ngs-bar barSlider="true">
+        <div ngsBarItem barWidth="50"></div>
       </ngs-bar>
     </div>
   </div>
