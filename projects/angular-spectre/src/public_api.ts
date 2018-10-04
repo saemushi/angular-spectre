@@ -51,3 +51,10 @@ export * from './lib/modal/modal.component';
 export * from './lib/toggle/toggle.directive';
 
 export * from './lib/menu/menu.component';
+
+export * from './lib/menu/menu.component';
+
+export * from './lib/toast/toast.component';
+export * from './lib/toast/toast.service';
+
+export * from './lib/spinner/spinner.component';

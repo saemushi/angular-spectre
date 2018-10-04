@@ -1,4 +1,4 @@
-import { ViewContainerRef, TemplateRef, ElementRef } from '@angular/core';
+import { ViewContainerRef, ElementRef } from '@angular/core';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy, PositionStrategy, NoopScrollStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';

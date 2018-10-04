@@ -24,6 +24,8 @@ import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
 import { MenuComponent } from './menu/menu.component';
+import { ToastComponent } from './toast/toast.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { MenuComponent } from './menu/menu.component';
     TooltipBasicComponent,
     TooltipComponent,
     ModalComponent,
-    MenuComponent
+    MenuComponent,
+    ToastComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

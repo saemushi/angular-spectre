@@ -14,5 +14,7 @@ export const routes = [
   { path: 'tooltip', name: 'Tooltip'},
   { path: 'tooltipBasic', name: 'Tooltip-Basic'},
   { path: 'modal', name: 'Modal'},
-  { path: 'menu', name: 'Menu'}
+  { path: 'menu', name: 'Menu'},
+  { path: 'toast', name: 'Toast'},
+  { path: 'spinner', name: 'Spinner'}
 ];
