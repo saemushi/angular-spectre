@@ -17,6 +17,8 @@ import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
 import { MenuComponent } from './menu/menu.component';
+import { ToastComponent } from './toast/toast.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
@@ -36,7 +38,9 @@ const routes: Routes = [
   { path: 'tooltip', component: TooltipComponent },
   { path: 'tooltipBasic', component: TooltipBasicComponent },
   { path: 'modal', component: ModalComponent },
-  { path: 'menu', component: MenuComponent }
+  { path: 'menu', component: MenuComponent },
+  { path: 'toast', component: ToastComponent },
+  { path: 'spinner', component: SpinnerComponent }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
