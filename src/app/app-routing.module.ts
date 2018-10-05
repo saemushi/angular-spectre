@@ -10,6 +10,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { ChipComponent } from './chip/chip.component';
+import { DividerComponent } from './divider/divider.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
 import { ModalComponent } from './modal/modal.component';
@@ -17,6 +18,7 @@ import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PanelComponent } from './panel/panel.component';
 import { PopoverComponent } from './popover/popover.component';
+import { RadioComponent } from './radio/radio.component';
 import { LandingComponent } from './landing/landing.component';
 import { StepComponent } from './step/step.component';
 import { TabComponent } from './tab/tab.component';
@@ -37,6 +39,7 @@ const routes: Routes = [
   { path: 'button', component: ButtonComponent },
   { path: 'card', component: CardComponent },
   { path: 'chip', component: ChipComponent },
+  { path: 'divider', component: DividerComponent },
   { path: 'empty-state', component: EmptyStateComponent },
   { path: 'icons', component: IconsComponent },
   { path: 'modal', component: ModalComponent },
@@ -44,6 +47,7 @@ const routes: Routes = [
   { path: 'pagination', component: PaginationComponent },
   { path: 'panel', component: PanelComponent },
   { path: 'popover', component: PopoverComponent },
+  { path: 'radio', component: RadioComponent },
   { path: 'step', component: StepComponent },
   { path: 'tab', component: TabComponent },
   { path: 'tile', component: TileComponent },

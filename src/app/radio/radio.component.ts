@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-radio',
@@ -7,16 +8,7 @@ import { Component } from '@angular/core';
 })
 export class RadioComponent {
 
-  radio1: any;
-  radio2: any;
-
-  getVal(val: any): void {
-    this.radio1 = val;
-  }
-
-  getVal2(val: any): void {
-    this.radio2 = val;
-  }
-
+  genderValue1: string;
+  genderValue2: string;
 
 }

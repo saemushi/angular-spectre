@@ -28,6 +28,8 @@ export * from './lib/card/card.module';
 export * from './lib/chip/chip.component';
 export * from './lib/chip/chip.module';
 
+export * from './lib/divider/divider.directive';
+
 export * from './lib/emptyState/emptyState';
 export * from './lib/emptyState/emptyState.module';
 
@@ -50,6 +52,8 @@ export * from './lib/panel/panel.component';
 export * from './lib/panel/panel.module';
 
 export * from './lib/popover/popover.directive';
+
+export * from './lib/radio/radio.component';
 
 export * from './lib/tile/tile.component';
 export * from './lib/tile/tile.module';

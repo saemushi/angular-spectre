@@ -1,53 +1,73 @@
 import { Component, Output, EventEmitter, Directive, HostBinding, Input, HostListener } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { forwardRef } from '@angular/core';
 
 @Component({
     selector: 'ngs-radio',
     template: `
     <label class="form-radio">
-        <input type="radio" name="{{radioName}}" value="{{radioValue}}" [checked]="radioChecked" [(ngModel)]="radioModelName[radioName]">
+        <input type="radio" name="{{rName}}" value="{{rValue}}" [checked]="changeValue === rValue ? true : false " (change)=changeRadioValue(rValue) >
         <i class="form-icon"></i> <ng-content></ng-content>
     </label>
     `
 })
-export class NgsRadioComponent {
+export class NgsRadioComponent  {
 
-    radioValue: any = '';
-    radioName: string = '';
-    radioModelName = {};
-    radioChecked: boolean = false;
+    changeValue: string = '';
+    rValue: string = '';
+    rName: string = '';
+    rModelName = {};
+    rChecked: boolean = false;
 
     @Output() upValue: EventEmitter<string> = new EventEmitter<string>();
 
     @Input('value')
-    set val(value: any) {
-        this.radioValue = value;
+    set radioVale(value: string) {
+        this.rValue = value;
     }
-    get val(): any {
-        return this.radioValue;
+    get radioVale(): string {
+        return this.rValue;
     }
 
     @Input('name')
-    set name(value: string) {
-        this.radioName = value;
+    set radioName(value: string) {
+        this.rName = value;
     }
-    get name(): string {
-        return this.radioName;
+    get radioName(): string {
+        return this.rName;
     }
 
     @Input('checked')
-    set checked(value: boolean) {
-        this.radioChecked = value;
-        this.radioModelName[this.radioName] = this.radioValue;
+    set radioChecked(value: boolean) {
+        this.rChecked = value;
+        if (this.rChecked === true) {
+            this.changeValue = this.rValue;
+        }
     }
-    get checked(): boolean {
-        return this.radioChecked;
+    get radioChecked(): boolean {
+        return this.rChecked;
     }
 
-    @HostListener('window: load')
-    @HostListener('change')
-    change() {
-        this.upValue.emit(this.radioModelName[this.radioName]);
+
+    changeRadioValue(value: string) {
+        console.log('newVal:' + value);
+        this.upValue.emit(value);
+        this.changeValue = value;
     }
 
 
 }
+
+@NgModule({
+    imports: [
+    ],
+    declarations: [
+        NgsRadioComponent
+    ],
+    exports: [
+        NgsRadioComponent,
+    ]
+})
+
+export class NgsRadioModule { }

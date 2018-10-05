@@ -1,6 +1,14 @@
-<div [ngClass]="{'tab': true, 'tab-block': fullWidth}">
-    <ng-content></ng-content>
-</div>
-<div class="tab-content" (tabEvent)="getTabContent($event)">
-    <ng-container *ngTemplateOutlet="ngsTab_2"></ng-container>
+<ul class="tab">
+    <li class="tab-item" *ngFor="let tab of tabs" [class.active]="tab.id === activeId">
+        <a [id]="tab.id" href (click)="!!selectTab(tab.id)" role="tab">
+            {{tab.title}}
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+    <ng-template ngFor let-tab [ngForOf]="tabs">
+        <div *ngIf="!destroyOnHide || tab.id === activeId" id="{{tab.id}}-content">
+            <ng-template [ngTemplateOutlet]="tab.tabContent?.templateRef"></ng-template>
+        </div>
+    </ng-template>
 </div>

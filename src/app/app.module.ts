@@ -22,6 +22,7 @@ import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PanelComponent } from './panel/panel.component';
+import { RadioComponent } from './radio/radio.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
@@ -30,6 +31,8 @@ import { NavComponent } from './nav/nav.component';
 import { StepComponent } from './step/step.component';
 import { PopoverComponent } from './popover/popover.component';
 import { TabComponent } from './tab/tab.component';
+import { DividerComponent } from './divider/divider.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { TabComponent } from './tab/tab.component';
     IconsComponent,
     PaginationComponent,
     PanelComponent,
+    RadioComponent,
     TooltipBasicComponent,
     TooltipComponent,
     ModalComponent,
@@ -55,12 +59,14 @@ import { TabComponent } from './tab/tab.component';
     StepComponent,
     PopoverComponent,
     TabComponent,
-    BarComponent
+    BarComponent,
+    DividerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     SharedModule
   ],
   providers: [],

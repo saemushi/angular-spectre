@@ -1,61 +1,69 @@
-import { CommonModule } from '@angular/common'; 
-import { Component, OnInit, Directive, HostBinding, Input, Output, NgModule, EventEmitter, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, Directive, Input, Output, NgModule, EventEmitter, ContentChildren, QueryList, AfterContentChecked, TemplateRef } from '@angular/core';
+
+let next = 0;
+
+export interface NgsTabChangeEvent {
+    activeId: string;
+    next: string;
+}
+
+@Directive({
+    selector: 'ng-template[ngsTabContent]'
+})
+export class NgsTabContent {
+    constructor(public templateRef: TemplateRef<any>) { }
+}
+
+@Directive({
+    selector: 'ngs-tab-item, ngsTabItem, [ngs-tab-item], [ngsTabItem]',
+})
+export class NgsTabItem {
+
+    tabContent: NgsTabContent | null;
+
+    @Input() id = `ngs-tab-${next++}`;
+
+    @Input() title: string;
+
+    @ContentChildren(NgsTabContent, { descendants: false }) tabsContent: QueryList<NgsTabContent>;
+
+    ngAfterContentChecked() {
+        this.tabContent = this.tabsContent.first;
+    }
+}
 
 @Component({
     selector: 'ngs-tab',
     templateUrl: 'tab.component.html'
 })
 export class NgsTabComponent {
-    fullWidth: boolean = false;
-    tabContent: any = '';
-    @Input('fullWidth')
-    get tabBlock(): boolean{
-        return this.fullWidth;
-    }
-    set tabBlock(value: boolean){
-        this.fullWidth = value;
-    }
 
-    getTabContent($event){
-        this.tabContent = $event;
-        console.log(this.tabContent);
-    }
+    @Input() destroyOnHide = true;
 
-}
+    @Input() activeId: string;
 
-@Component({
-    selector: 'ngs-tab-item',
-    templateUrl: 'tabItem.component.html'
-})
-export class NgsTabItemComponent implements OnInit{
+    @ContentChildren(NgsTabItem) tabs: QueryList<NgsTabItem>;
 
-    static tabCount: number = 0;
-    title: string = '';
-    tabContent: string = '';
+    @Output() tabChange = new EventEmitter<NgsTabChangeEvent>();
 
-    @Output() tabEvent: EventEmitter<string> = new EventEmitter<string>();
-
-    @HostBinding('class.tab-item') tabItem = true;
-    @HostBinding('class.active') @Input('active') active = false;
-    @HostBinding('class.tab-action') @Input('tabAction') action = false;
-    @HostListener('click')
-    changeTabContent(){
-        this.tabEvent.emit(this.ele.nativeElement.id);
+    selectTab(id: string) {
+        let selectedTab = this._getTabById(id);
+        if (selectedTab && this.activeId !== selectedTab.id) {
+            let defaultPrevented = false;
+            this.tabChange.emit({ activeId: this.activeId, next: selectedTab.id });
+            this.activeId = selectedTab.id;
+        }
     }
 
-    @Input('title') 
-    set tabTitle(value: string){
-        this.title = value;
+    ngAfterContentChecked() {
+        let activeTab = this._getTabById(this.activeId);
+        this.activeId = activeTab ? activeTab.id : (this.tabs.length ? this.tabs.first.id : null);
     }
-    get tabTitle(): string{
-        return this.title;
-    }
-    
-    constructor(private ele: ElementRef, private renderer: Renderer2) { }
 
-    ngOnInit(){
-        this.renderer.setAttribute(this.ele.nativeElement, 'id', `ngsTab_${NgsTabItemComponent.tabCount}`);
-        NgsTabItemComponent.tabCount++;
+    private _getTabById(id: string): NgsTabItem {
+        let tabsId: NgsTabItem[] = this.tabs.filter(tab => tab.id === id);
+        return tabsId.length ? tabsId[0] : null;
     }
 
 }
@@ -66,12 +74,14 @@ export class NgsTabItemComponent implements OnInit{
         CommonModule
     ],
     declarations: [
+        NgsTabContent,
         NgsTabComponent,
-        NgsTabItemComponent
+        NgsTabItem
     ],
     exports: [
+        NgsTabContent,
         NgsTabComponent,
-        NgsTabItemComponent
+        NgsTabItem
     ]
 })
 
