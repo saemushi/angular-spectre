@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 export interface AccordionObject {
   accordionTitle: string;

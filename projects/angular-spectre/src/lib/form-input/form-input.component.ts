@@ -1,14 +1,26 @@
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 import {
-  Component, OnDestroy, ViewEncapsulation,
-  ChangeDetectionStrategy, Input, ViewChild, ElementRef, NgModule, Inject, AfterViewInit,
-  Optional, Self, ChangeDetectorRef, HostListener, forwardRef
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  forwardRef,
+  HostListener,
+  Inject,
+  Input,
+  NgModule,
+  OnDestroy,
+  Optional,
+  Self,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
-import { FormControlName, NgControl, NgModel, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import {ControlValueAccessor, FormControlName, NG_VALUE_ACCESSOR, NgControl, NgModel} from '@angular/forms';
 
-import { checkBooleanProperty } from '../core/utils';
-import { Subscription } from 'rxjs';
+import {checkBooleanProperty} from '../core/utils';
+import {Subscription} from 'rxjs';
 
 const VALID_TYPES = [
   'color',
@@ -35,6 +47,7 @@ const VALID_TYPES = [
   'week',
 ];
 const nativeValidationAttributes = ['required', 'pattern', 'minlength', 'maxlength', 'min', 'max', 'step'];
+
 export enum InputState {
   INITIAL,
   VALID,
@@ -61,39 +74,55 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
 
   isInput: boolean;
   isTextArea: boolean;
-  private _valid: InputState;
+  onTouched: Function;
+  @Input() name: string;
+  @ViewChild('inputRef') inputRef: ElementRef;
   private _statusChanges$: Subscription;
+  private _uniqueId: string = `ngs-input-${++nextUniqueId}`;
+  @Input() id: string = this._uniqueId;
+  private onChange: Function;
+
+  constructor(
+    @Optional() @Self() @Inject(NgModel) protected ngModel: NgModel,
+    @Optional() @Self() @Inject(FormControlName) protected formControl: FormControlName,
+    protected cdr: ChangeDetectorRef) {
+  }
+
+  private _valid: InputState;
+
+  public get valid(): InputState {
+    return this._valid;
+  }
+
+  public set valid(value: InputState) {
+    this._valid = value;
+  }
+
   private _type: string;
 
-  private _uniqueId: string = `ngs-input-${++nextUniqueId}`;
-  private _required: boolean = false;
-
-  private onChange: Function;
-  onTouched: Function;
-
-  @Input() id: string = this._uniqueId;
-
-  @Input() name: string;
-
   @Input()
-  get type(): string { return this._type; }
+  get type(): string {
+    return this._type;
+  }
+
   set type(value: string) {
     this._type = value || 'text';
     this.validateType();
   }
 
-  @ViewChild('inputRef') inputRef: ElementRef;
-  constructor(
-    @Optional() @Self() @Inject(NgModel) protected ngModel: NgModel,
-    @Optional() @Self() @Inject(FormControlName) protected formControl: FormControlName,
-    protected cdr: ChangeDetectorRef) { }
+  private _required: boolean = false;
 
   @Input()
   get required(): boolean {
     return this._required;
   }
+
   set required(value: boolean) {
     this._required = checkBooleanProperty(value);
+  }
+
+  get value() {
+    return this.nativeElement.value;
   }
 
   @Input('value')
@@ -101,17 +130,13 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
     this.nativeElement.value = value;
   }
 
-  get value() {
-    return this.nativeElement.value;
+  public get disabled() {
+    return this.nativeElement.hasAttribute('disabled');
   }
 
   @Input()
   public set disabled(value: boolean) {
     this.nativeElement.disabled = value;
-  }
-
-  public get disabled() {
-    return this.nativeElement.hasAttribute('disabled');
   }
 
   get ngControl(): NgControl {
@@ -122,7 +147,13 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
     return this.inputRef.nativeElement;
   }
 
-  get inputId(): string { return `${this.id || this._uniqueId}`; }
+  get inputId(): string {
+    return `${this.id || this._uniqueId}`;
+  }
+
+  public get focused() {
+    return this.nativeElement.isFocused;
+  }
 
   @HostListener('focus', ['$event'])
   public onFocus(event) {
@@ -175,6 +206,24 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
     this.onTouched = fn;
   }
 
+  validateType() {
+    if (this.type === 'textarea') {
+      this.isTextArea = true;
+    } else if (VALID_TYPES.indexOf(this.type) > -1) {
+      this.isInput = true;
+    }
+
+    if (VALID_TYPES.indexOf(this.type) < 0) {
+      throw Error(`Input type "${this.type}" isn't supported by matInput.`);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this._statusChanges$) {
+      this._statusChanges$.unsubscribe();
+    }
+  }
+
   protected onStatusChanged() {
     if (this.ngControl.control.validator || this.ngControl.control.asyncValidator) {
       if (this.ngControl.control.touched || this.ngControl.control.dirty) {
@@ -203,36 +252,6 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
     return !!this.ngControl && (!!this.ngControl.control.validator || !!this.ngControl.control.asyncValidator);
   }
 
-  validateType() {
-    if (this.type === 'textarea') {
-      this.isTextArea = true;
-    } else if (VALID_TYPES.indexOf(this.type) > -1) {
-      this.isInput = true;
-    }
-
-    if (VALID_TYPES.indexOf(this.type) < 0) {
-      throw Error(`Input type "${this.type}" isn't supported by matInput.`);
-    }
-  }
-
-  public get focused() {
-    return this.nativeElement.isFocused;
-  }
-
-  public get valid(): InputState {
-    return this._valid;
-  }
-
-  public set valid(value: InputState) {
-    this._valid = value;
-  }
-
-  ngOnDestroy() {
-    if (this._statusChanges$) {
-      this._statusChanges$.unsubscribe();
-    }
-  }
-
 }
 
 @NgModule({
@@ -240,4 +259,5 @@ export class FormInputComponent implements AfterViewInit, OnDestroy, ControlValu
   exports: [FormInputComponent],
   imports: [CommonModule]
 })
-export class FormInputModule { }
+export class FormInputModule {
+}

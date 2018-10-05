@@ -8,7 +8,8 @@
             <div class="form-autocomplete-input form-input">
               <ngs-chip *ngFor="let option of selectedOptions; let index=index">
                 {{option[displayWith] ? option[displayWith] : option}}
-                <a href="javascript:void(0)" class="btn btn-clear" aria-label="Close" role="button" (click)="removeSelectedOption(index)"></a>
+                <a href="javascript:void(0)" class="btn btn-clear" aria-label="Close" role="button"
+                   (click)="removeSelectedOption(index)"></a>
               </ngs-chip>
             </div>
           </ng-container>
@@ -16,31 +17,37 @@
             <ng-container *ngIf="displayOptions === _position.INLINE">
               <ngs-chip *ngFor="let option of selectedOptions; let index=index">
                 {{option[displayWith] ? option[displayWith] : option}}
-                <a href="javascript:void(0)" *ngIf="showDeleteOption" class="btn btn-clear" aria-label="Close" role="button"
-                  (click)="removeSelectedOption(index)"></a>
+                <a href="javascript:void(0)" *ngIf="showDeleteOption" class="btn btn-clear" aria-label="Close"
+                   role="button"
+                   (click)="removeSelectedOption(index)"></a>
               </ngs-chip>
             </ng-container>
             <form>
               <input class="form-input" [id]="id" type="text" placeholder="{{placeholder}}" [formControl]="formCtrl"
-                (focusin)="handleFocus()" (blur)="onTouched($event)" (keydown)="handleKeydown($event)" #inputElement>
+                     (focusin)="handleFocus()" (blur)="onTouched($event)" (keydown)="handleKeydown($event)"
+                     #inputElement>
             </form>
           </div>
-          <div class="form-autocomplete-input form-input" *ngIf="selectedOptions.length > 0 && displayOptions=== _position.BOTTOM">
+          <div class="form-autocomplete-input form-input"
+               *ngIf="selectedOptions.length > 0 && displayOptions=== _position.BOTTOM">
             <ngs-chip *ngFor="let option of selectedOptions; let index=index">
               {{option[displayWith] ? option[displayWith] : option}}
-              <a href="javascript:void(0)" class="btn btn-clear" aria-label="Close" role="button" (click)="removeSelectedOption(index)"></a>
+              <a href="javascript:void(0)" class="btn btn-clear" aria-label="Close" role="button"
+                 (click)="removeSelectedOption(index)"></a>
             </ngs-chip>
           </div>
           <div class="overlay-container" *ngIf="filteredData && (filteredData | async)?.length > 0 && showPanel"
-            (click)="closePanel()"></div>
-          <ul class="menu mpa-autocomplete-panel" *ngIf="filteredData && (filteredData | async)?.length > 0 && showPanel"
-            #panel>
+               (click)="closePanel()"></div>
+          <ul class="menu mpa-autocomplete-panel"
+              *ngIf="filteredData && (filteredData | async)?.length > 0 && showPanel"
+              #panel>
             <li class="menu-item" [id]="id+'-'+index" *ngFor="let item of filteredData | async; let index=index"
-              [ngClass]="{'option-active': index === activeOption}" (click)="selectViaInteraction(index)">
+                [ngClass]="{'option-active': index === activeOption}" (click)="selectViaInteraction(index)">
               <a href="javascript:void(0)">
                 <div class="tile tile-centered">
                   <div class="tile-icon">
-                    <figure class="avatar avatar-sm" [attr.data-initial]="item[displayWith]" style="background-color: #5755d9;"></figure>
+                    <figure class="avatar avatar-sm" [attr.data-initial]="item[displayWith]"
+                            style="background-color: #5755d9;"></figure>
                   </div>
                   <div class="tile-content">
                     {{item[displayWith] ? item[displayWith] : item}}

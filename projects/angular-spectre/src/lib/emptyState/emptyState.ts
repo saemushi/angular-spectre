@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive, HostBinding } from '@angular/core';
+import {Component, Directive, HostBinding} from '@angular/core';
 
 @Directive({
   selector: 'ngs-empty-state-icon, ngsEmptyStateIcon, [ngs-empty-state-icon], [ngsEmptyStateIcon]',
@@ -32,4 +32,5 @@ export class NgsEmptyStateActionDirective {
   selector: 'ngs-empty-state',
   templateUrl: 'emptyState.html'
 })
-export class NgsEmptyStateComponent {}
+export class NgsEmptyStateComponent {
+}

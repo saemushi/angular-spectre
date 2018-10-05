@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive, HostBinding } from '@angular/core';
+import {Component, Directive, HostBinding} from '@angular/core';
 
 @Component({
   selector: 'ngs-card',

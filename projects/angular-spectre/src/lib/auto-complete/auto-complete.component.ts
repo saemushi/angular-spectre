@@ -1,15 +1,21 @@
-
 import {
-  Component, OnInit, OnDestroy, ViewEncapsulation,
-  ChangeDetectionStrategy, Input, ViewChild, ElementRef, Output, EventEmitter,
-  HostBinding,
-  Renderer2
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW } from '../core/utils';
+import {FormControl} from '@angular/forms';
+import {DOWN_ARROW, ENTER, ESCAPE, TAB, UP_ARROW} from '../core/utils';
 
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import * as _ from 'lodash';
 
 /** The height of each autocomplete option. */
@@ -45,8 +51,6 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
   dataCopy: Array<any> = null;
   is_focused = 'is-focused';
   _position = Position;
-  private _filteredData: any = [];
-
   @Input() id: string = `ngs-autocomplete-${_uniqueAutocompleteIdCounter++}`;
   @Input() data: Array<any> = null;
   @Input() filterWith: string | null = 'name';
@@ -55,22 +59,16 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
   @Input() multiple: boolean | null = true;
   @Input() uniqueKey: string | null = 'id';
   @Input() showDeleteOption: boolean | null = true;
-  @Input()
-  set values(value) {
-    this.selectedOptions = value || [];
-  }
   @Input() label: string | null = '';
   @Input() placeholder: string | null = '';
-
-
   @Output() readonly optionSelected: EventEmitter<any> =
     new EventEmitter<any>();
   @Output() readonly panelOpened: EventEmitter<void> = new EventEmitter<void>();
   @Output() readonly panelClosed: EventEmitter<void> = new EventEmitter<void>();
-
   @ViewChild('panel') panel: ElementRef;
   @ViewChild('inputElement') inputElement: ElementRef;
   @ViewChild('form_autocomplete') form_autocomplete: ElementRef;
+  private _filteredData: any = [];
 
   constructor(private renderer: Renderer2) {
     this.formCtrl = new FormControl();
@@ -80,6 +78,11 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
         map(item => this.filterData(item))
       );
     // console.log(this.filteredData);
+  }
+
+  @Input()
+  set values(value) {
+    this.selectedOptions = value || [];
   }
 
   ngOnInit() {
@@ -159,10 +162,6 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     this.optionSelected.emit(this.selectedOptions);
   }
 
-  private _resetActiveItem(): void {
-    this.activeOption = 0;
-  }
-
   selectViaInteraction(index) {
     if (index >= 0) {
       const checkValue = this.selectedOptions.findIndex(item => item[this.displayWith] === this._filteredData[index][this.displayWith]);
@@ -208,7 +207,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
   }
 
   getOptionScrollPosition(optionIndex: number, optionHeight: number,
-    currentScrollPosition: number, panelHeight: number): number {
+                          currentScrollPosition: number, panelHeight: number): number {
     const optionOffset = optionIndex * optionHeight;
 
     if (optionOffset < currentScrollPosition) {
@@ -222,6 +221,14 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     return currentScrollPosition;
   }
 
+  ngOnDestroy() {
+    this.showPanel = false;
+  }
+
+  private _resetActiveItem(): void {
+    this.activeOption = 0;
+  }
+
   private scrollToOption(): void {
     const index = this.activeOption || 0;
 
@@ -233,10 +240,6 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     );
 
     this.setScrollTop(newScrollPosition);
-  }
-
-  ngOnDestroy() {
-    this.showPanel = false;
   }
 
 }

@@ -1,5 +1,4 @@
-import { Directive, ElementRef, Input, Renderer2, Component } from '@angular/core';
-import { consumeBinding } from '@angular/core/src/render3/instructions';
+import {Component, Input} from '@angular/core';
 
 export interface BreadcrumbsObject {
   title: string;

@@ -1,4 +1,4 @@
-import {AnimationEvent} from '@angular/animations';
+import {animate, AnimationEvent, AnimationTriggerMetadata, state, style, transition, trigger} from '@angular/animations';
 import {AriaDescriber, FocusMonitor} from '@angular/cdk/a11y';
 import {Directionality} from '@angular/cdk/bidi';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
@@ -24,6 +24,8 @@ import {
   Component,
   Directive,
   ElementRef,
+  HostBinding,
+  HostListener,
   Inject,
   InjectionToken,
   Input,
@@ -32,30 +34,19 @@ import {
   Optional,
   ViewContainerRef,
   ViewEncapsulation,
-  HostListener,
-  HostBinding,
 } from '@angular/core';
-import {Subject, Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
-
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger,
-    AnimationTriggerMetadata,
-  } from '@angular/animations';
-  const ngsTooltipAnimations: {
-    readonly tooltipState: AnimationTriggerMetadata;
-  } = {
-    tooltipState: trigger('state', [
-      state('initial, void, hidden', style({opacity: '0'})),
-      state('visible', style({opacity: '1'})),
-      transition('* => visible', animate('150ms ease')),
-      transition('* => hidden', animate('150ms ease-out')),
-    ])
-  };
+const ngsTooltipAnimations: {
+  readonly tooltipState: AnimationTriggerMetadata;
+} = {
+  tooltipState: trigger('state', [
+    state('initial, void, hidden', style({opacity: '0'})),
+    state('visible', style({opacity: '1'})),
+    transition('* => visible', animate('150ms ease')),
+    transition('* => hidden', animate('150ms ease-out')),
+  ])
+};
 
 
 export type TooltipPosition = 'left' | 'right' | 'top' | 'bottom';
@@ -69,7 +60,7 @@ export function getNgsTooltipInvalidPositionError(position: string) {
 }
 
 export const NGS_TOOLTIP_SCROLL_STRATEGY =
-    new InjectionToken<() => ScrollStrategy>('ngs-tooltip-scroll-strategy');
+  new InjectionToken<() => ScrollStrategy>('ngs-tooltip-scroll-strategy');
 
 export function NGS_TOOLTIP_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
   return () => overlay.scrollStrategies.reposition({scrollThrottle: SCROLL_THROTTLE_MS});
@@ -88,10 +79,10 @@ export interface DefaultOptions {
 }
 
 export const NGS_TOOLTIP_DEFAULT_OPTIONS =
-    new InjectionToken<DefaultOptions>('ngs-tooltip-default-options', {
-      providedIn: 'root',
-      factory: NGS_TOOLTIP_DEFAULT_OPTIONS_FACTORY
-    });
+  new InjectionToken<DefaultOptions>('ngs-tooltip-default-options', {
+    providedIn: 'root',
+    factory: NGS_TOOLTIP_DEFAULT_OPTIONS_FACTORY
+  });
 
 export function NGS_TOOLTIP_DEFAULT_OPTIONS_FACTORY(): DefaultOptions {
   return {
@@ -116,25 +107,25 @@ export type TooltipVisibility = 'initial' | 'visible' | 'hidden';
 export class TooltipComponent {
   message: string;
 
-  tooltipClass: string | string[] | Set<string> | {[key: string]: any};
+  tooltipClass: string | string[] | Set<string> | { [key: string]: any };
 
   _showTimeoutId: any;
 
   _hideTimeoutId: any;
 
   _visibility: TooltipVisibility = 'initial';
-
-  private _closeOnInteraction: boolean = false;
-
-  private readonly _onHide: Subject<any> = new Subject();
-
   _isHandset: Observable<BreakpointState> = this._breakpointObserver.observe(Breakpoints.Handset);
-
   @HostBinding('style.zoom')
   zoom = this._visibility === 'visible' ? 1 : null;
-
   @HostBinding('attr.aria-hidden')
   aria = true;
+  private _closeOnInteraction: boolean = false;
+  private readonly _onHide: Subject<any> = new Subject();
+
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _breakpointObserver: BreakpointObserver) {
+  }
 
   @HostListener('body:click')
   _handleBodyInteraction(): void {
@@ -142,10 +133,6 @@ export class TooltipComponent {
       this.hide(0);
     }
   }
-
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _breakpointObserver: BreakpointObserver) {}
 
   show(delay: number): void {
     if (this._hideTimeoutId) {
@@ -208,89 +195,11 @@ export class TooltipComponent {
 export class TooltipDirective implements OnDestroy {
   _overlayRef: OverlayRef | null;
   _tooltipInstance: TooltipComponent | null;
-
-  private _portal: ComponentPortal<TooltipComponent>;
-  private _position: TooltipPosition = 'bottom';
-  private _disabled: boolean = false;
-  private _tooltipClass: string|string[]|Set<string>|{[key: string]: any};
-
-  @Input('ngsTooltipPosition')
-  get position(): TooltipPosition { return this._position; }
-  set position(value: TooltipPosition) {
-    if (value !== this._position) {
-      this._position = value;
-
-      if (this._overlayRef) {
-        this._updatePosition();
-        if (this._tooltipInstance) {
-          if (this._tooltipInstance !== undefined) {
-            this._tooltipInstance.show(0);
-          }
-        }
-        this._overlayRef.updatePosition();
-      }
-    }
-  }
-
-  @Input('ngsTooltipDisabled')
-  get disabled(): boolean { return this._disabled; }
-  set disabled(value) {
-    this._disabled = coerceBooleanProperty(value);
-
-    if (this._disabled) {
-      this.hide(0);
-    }
-  }
   @Input('ngsTooltipShowDelay') showDelay: number = this._defaultOptions.showDelay;
-
   @Input('ngsTooltipHideDelay') hideDelay: number = this._defaultOptions.hideDelay;
-
-  private _message = '';
-
-  @Input('ngsTooltip')
-  get message() { return this._message; }
-  set message(value: string) {
-    this._ariaDescriber.removeDescription(this._elementRef.nativeElement, this._message);
-    this._message = value != null ? `${value}`.trim() : '';
-    console.log(this._message);
-    if (!this._message && this._isTooltipVisible()) {
-      this.hide(0);
-    } else {
-      this._updateTooltipMessage();
-      this._ariaDescriber.describe(this._elementRef.nativeElement, this.message);
-    }
-  }
-
-  @Input('ngsTooltipClass')
-  get tooltipClass() { return this._tooltipClass; }
-  set tooltipClass(value: string|string[]|Set<string>|{[key: string]: any}) {
-    this._tooltipClass = value;
-    if (this._tooltipInstance) {
-      this._setTooltipClass(this._tooltipClass);
-    }
-  }
-
+  private _portal: ComponentPortal<TooltipComponent>;
   private _manualListeners = new Map<string, EventListenerOrEventListenerObject>();
-
   private readonly _destroyed = new Subject<void>();
-
-  @HostListener('longpress')
-  press() {
-    this.show();
-  }
-
-  @HostListener('keydown')
-  down($event) {
-    if (this._isTooltipVisible() && $event.keyCode === ESCAPE) {
-      $event.stopPropagation();
-      this.hide(0);
-    }
-  }
-
-  @HostListener('touched')
-  touched() {
-    this.hide(this._defaultOptions.touchendHideDelay);
-  }
 
   constructor(
     private _overlay: Overlay,
@@ -304,7 +213,7 @@ export class TooltipDirective implements OnDestroy {
     @Inject(NGS_TOOLTIP_SCROLL_STRATEGY) private _scrollStrategy,
     @Optional() private _dir: Directionality,
     @Optional() @Inject(NGS_TOOLTIP_DEFAULT_OPTIONS)
-      private _defaultOptions: DefaultOptions) {
+    private _defaultOptions: DefaultOptions) {
 
     const element: HTMLElement = _elementRef.nativeElement;
 
@@ -330,6 +239,95 @@ export class TooltipDirective implements OnDestroy {
     });
   }
 
+  private _position: TooltipPosition = 'bottom';
+
+  @Input('ngsTooltipPosition')
+  get position(): TooltipPosition {
+    return this._position;
+  }
+
+  set position(value: TooltipPosition) {
+    if (value !== this._position) {
+      this._position = value;
+
+      if (this._overlayRef) {
+        this._updatePosition();
+        if (this._tooltipInstance) {
+          if (this._tooltipInstance !== undefined) {
+            this._tooltipInstance.show(0);
+          }
+        }
+        this._overlayRef.updatePosition();
+      }
+    }
+  }
+
+  private _disabled: boolean = false;
+
+  @Input('ngsTooltipDisabled')
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
+  set disabled(value) {
+    this._disabled = coerceBooleanProperty(value);
+
+    if (this._disabled) {
+      this.hide(0);
+    }
+  }
+
+  private _tooltipClass: string | string[] | Set<string> | { [key: string]: any };
+
+  @Input('ngsTooltipClass')
+  get tooltipClass() {
+    return this._tooltipClass;
+  }
+
+  set tooltipClass(value: string | string[] | Set<string> | { [key: string]: any }) {
+    this._tooltipClass = value;
+    if (this._tooltipInstance) {
+      this._setTooltipClass(this._tooltipClass);
+    }
+  }
+
+  private _message = '';
+
+  @Input('ngsTooltip')
+  get message() {
+    return this._message;
+  }
+
+  set message(value: string) {
+    this._ariaDescriber.removeDescription(this._elementRef.nativeElement, this._message);
+    this._message = value != null ? `${value}`.trim() : '';
+    console.log(this._message);
+    if (!this._message && this._isTooltipVisible()) {
+      this.hide(0);
+    } else {
+      this._updateTooltipMessage();
+      this._ariaDescriber.describe(this._elementRef.nativeElement, this.message);
+    }
+  }
+
+  @HostListener('longpress')
+  press() {
+    this.show();
+  }
+
+  @HostListener('keydown')
+  down($event) {
+    if (this._isTooltipVisible() && $event.keyCode === ESCAPE) {
+      $event.stopPropagation();
+      this.hide(0);
+    }
+  }
+
+  @HostListener('touched')
+  touched() {
+    this.hide(this._defaultOptions.touchendHideDelay);
+  }
+
   ngOnDestroy() {
     if (this._overlayRef) {
       this._overlayRef.dispose();
@@ -351,7 +349,9 @@ export class TooltipDirective implements OnDestroy {
   }
 
   show(delay: number = this.showDelay): void {
-    if (this.disabled || !this.message) { return; }
+    if (this.disabled || !this.message) {
+      return;
+    }
 
     const overlayRef = this._createOverlay();
 
@@ -380,6 +380,62 @@ export class TooltipDirective implements OnDestroy {
 
   _isTooltipVisible(): boolean {
     return !!this._tooltipInstance && this._tooltipInstance.isVisible();
+  }
+
+  _getOrigin(): { main: OriginConnectionPosition, fallback: OriginConnectionPosition } {
+    const isLtr = !this._dir || this._dir.value === 'ltr';
+    const position = this.position;
+    let originPosition: OriginConnectionPosition;
+
+    if (position === 'top' || position === 'bottom') {
+      originPosition = {originX: 'center', originY: position === 'top' ? 'top' : 'bottom'};
+    } else if (
+      (position === 'left' && isLtr) ||
+      (position === 'right' && !isLtr)) {
+      originPosition = {originX: 'start', originY: 'center'};
+    } else if (
+      (position === 'right' && isLtr) ||
+      (position === 'left' && !isLtr)) {
+      originPosition = {originX: 'end', originY: 'center'};
+    } else {
+      throw getNgsTooltipInvalidPositionError(position);
+    }
+
+    const {x, y} = this._invertPosition(originPosition.originX, originPosition.originY);
+
+    return {
+      main: originPosition,
+      fallback: {originX: x, originY: y}
+    };
+  }
+
+  _getOverlayPosition(): { main: OverlayConnectionPosition, fallback: OverlayConnectionPosition } {
+    const isLtr = !this._dir || this._dir.value === 'ltr';
+    const position = this.position;
+    let overlayPosition: OverlayConnectionPosition;
+
+    if (position === 'top') {
+      overlayPosition = {overlayX: 'center', overlayY: 'bottom'};
+    } else if (position === 'bottom') {
+      overlayPosition = {overlayX: 'center', overlayY: 'top'};
+    } else if (
+      (position === 'left' && isLtr) ||
+      (position === 'right' && !isLtr)) {
+      overlayPosition = {overlayX: 'end', overlayY: 'center'};
+    } else if (
+      (position === 'right' && isLtr) ||
+      (position === 'left' && !isLtr)) {
+      overlayPosition = {overlayX: 'start', overlayY: 'center'};
+    } else {
+      throw getNgsTooltipInvalidPositionError(position);
+    }
+
+    const {x, y} = this._invertPosition(overlayPosition.overlayX, overlayPosition.overlayY);
+
+    return {
+      main: overlayPosition,
+      fallback: {overlayX: x, overlayY: y}
+    };
   }
 
   private _createOverlay(): OverlayRef {
@@ -443,62 +499,6 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  _getOrigin(): {main: OriginConnectionPosition, fallback: OriginConnectionPosition} {
-    const isLtr = !this._dir || this._dir.value === 'ltr';
-    const position = this.position;
-    let originPosition: OriginConnectionPosition;
-
-    if (position === 'top' || position === 'bottom') {
-      originPosition = {originX: 'center', originY: position === 'top' ? 'top' : 'bottom'};
-    } else if (
-      (position === 'left' && isLtr) ||
-      (position === 'right' && !isLtr)) {
-      originPosition = {originX: 'start', originY: 'center'};
-    } else if (
-      (position === 'right' && isLtr) ||
-      (position === 'left' && !isLtr)) {
-      originPosition = {originX: 'end', originY: 'center'};
-    } else {
-      throw getNgsTooltipInvalidPositionError(position);
-    }
-
-    const {x, y} = this._invertPosition(originPosition.originX, originPosition.originY);
-
-    return {
-      main: originPosition,
-      fallback: {originX: x, originY: y}
-    };
-  }
-
-  _getOverlayPosition(): {main: OverlayConnectionPosition, fallback: OverlayConnectionPosition} {
-    const isLtr = !this._dir || this._dir.value === 'ltr';
-    const position = this.position;
-    let overlayPosition: OverlayConnectionPosition;
-
-    if (position === 'top') {
-      overlayPosition = {overlayX: 'center', overlayY: 'bottom'};
-    } else if (position === 'bottom') {
-      overlayPosition = {overlayX: 'center', overlayY: 'top'};
-    } else if (
-      (position === 'left' && isLtr) ||
-      (position === 'right' && !isLtr)) {
-      overlayPosition = {overlayX: 'end', overlayY: 'center'};
-    } else if (
-      (position === 'right' && isLtr) ||
-      (position === 'left' && !isLtr)) {
-      overlayPosition = {overlayX: 'start', overlayY: 'center'};
-    } else {
-      throw getNgsTooltipInvalidPositionError(position);
-    }
-
-    const {x, y} = this._invertPosition(overlayPosition.overlayX, overlayPosition.overlayY);
-
-    return {
-      main: overlayPosition,
-      fallback: {overlayX: x, overlayY: y}
-    };
-  }
-
   private _updateTooltipMessage() {
 
     if (this._tooltipInstance) {
@@ -518,7 +518,7 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  private _setTooltipClass(tooltipClass: string|string[]|Set<string>|{[key: string]: any}) {
+  private _setTooltipClass(tooltipClass: string | string[] | Set<string> | { [key: string]: any }) {
     if (this._tooltipInstance) {
       this._tooltipInstance.tooltipClass = tooltipClass;
       this._tooltipInstance._markForCheck();

@@ -1,7 +1,7 @@
-import { ViewContainerRef, ElementRef } from '@angular/core';
-import { Direction } from '@angular/cdk/bidi';
-import { ScrollStrategy, PositionStrategy, NoopScrollStrategy } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import {ElementRef, ViewContainerRef} from '@angular/core';
+import {Direction} from '@angular/cdk/bidi';
+import {NoopScrollStrategy, PositionStrategy, ScrollStrategy} from '@angular/cdk/overlay';
+import {TemplatePortal} from '@angular/cdk/portal';
 
 export type MenuPositionX = 'before' | 'after';
 
@@ -46,6 +46,7 @@ export class OverlaySettings<D = any> {
   closeOnNavigation?: boolean = true;
   closeOnBackdropClick?: boolean = true;
   overlapTrigger?: boolean = false;
+
   constructor(settings: Object = {}) {
     Object.assign(this, settings);
   }

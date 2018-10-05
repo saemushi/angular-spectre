@@ -1,4 +1,4 @@
-import { NgsAutoCompleteModule } from './auto-complete.module';
+import {NgsAutoCompleteModule} from './auto-complete.module';
 
 describe('AutoCompleteModule', () => {
   let autoCompleteModule: NgsAutoCompleteModule;

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgsBadgeDirective } from './badge.directive';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NgsBadgeDirective} from './badge.directive';
 
 @NgModule({
   imports: [
@@ -9,4 +9,5 @@ import { NgsBadgeDirective } from './badge.directive';
   declarations: [NgsBadgeDirective],
   exports: [NgsBadgeDirective]
 })
-export class NgsBadgeModule { }
+export class NgsBadgeModule {
+}

@@ -1,6 +1,7 @@
 @import "../../../../../../node_modules/spectre.css/src/_variables.scss";
 @import '../../../../../../node_modules/@angular/cdk/_a11y.scss';
 @import "../../../../../../node_modules/@angular/cdk/_overlay.scss";
+
 @include cdk-overlay();
 
 .ngs-tooltip-panel {
@@ -20,9 +21,9 @@
   font-size: $font-size-sm;
   padding: $unit-1 $unit-2;
   background: $gray-color-dark;
-   @include cdk-high-contrast {
-     outline: solid 1px;
-   }
+  @include cdk-high-contrast {
+    outline: solid 1px;
+  }
 }
 
 .ngs-tooltip-handset {

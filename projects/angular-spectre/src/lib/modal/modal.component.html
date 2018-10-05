@@ -16,10 +16,12 @@
     <ng-content *ngIf="!message"></ng-content>
 
     <div *ngIf="leftButtonLabel || rightButtonLabel" class="modal-footer">
-      <button *ngIf="leftButtonLabel" type="button" ngsButton color="leftButtonColor" (click)="onInternalLeftButtonSelect($event)">
+      <button *ngIf="leftButtonLabel" type="button" ngsButton color="leftButtonColor"
+              (click)="onInternalLeftButtonSelect($event)">
         {{ leftButtonLabel }}
       </button>
-      <button *ngIf="rightButtonLabel" type="button" ngsButton color="rightButtonColor" (click)="onInternalRightButtonSelect($event)">
+      <button *ngIf="rightButtonLabel" type="button" ngsButton color="rightButtonColor"
+              (click)="onInternalRightButtonSelect($event)">
         {{ rightButtonLabel }}
       </button>
     </div>

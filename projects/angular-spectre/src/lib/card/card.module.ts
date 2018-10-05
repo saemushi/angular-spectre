@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
-    NgsCardComponent,
-    NgsCardHeaderDirective,
-    NgsCardBodyDirective,
-    NgsCardFooterDirective,
-    NgsCardTitleDirective,
-    NgsCardSubtitleDirective,
-    NgsCardImgDirective
+  NgsCardBodyDirective,
+  NgsCardComponent,
+  NgsCardFooterDirective,
+  NgsCardHeaderDirective,
+  NgsCardImgDirective,
+  NgsCardSubtitleDirective,
+  NgsCardTitleDirective
 } from './card';
 
 @NgModule({
@@ -33,4 +33,5 @@ import {
     NgsCardImgDirective
   ]
 })
-export class NgsCardModule { }
+export class NgsCardModule {
+}

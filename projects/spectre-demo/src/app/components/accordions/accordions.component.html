@@ -1,0 +1,27 @@
+<div class="container" id="accordions">
+  <h3 class="s-title">Accordions<a class="anchor" href="#accordions" aria-hidden="true">#</a></h3>
+  <p>Accordions are used to toggle sections of content.</p>
+  <div class="docs-demo columns">
+    <div class="column col-6 col-md-12">
+      <ngs-accordion [accordionTitle]="'Elements'" [mutuallyExclusive]="true" [arrowIcon]="true" [parent]="true">
+        <ngs-accordion [accordionTitle]="'Element 1'" [mutuallyExclusive]="true" [arrowIcon]="false"></ngs-accordion>
+        <ngs-accordion [accordionTitle]="'Element 2'" [mutuallyExclusive]="true" [arrowIcon]="false"></ngs-accordion>
+      </ngs-accordion>
+
+      <ngs-accordion [accordionTitle]="'Layout'" [mutuallyExclusive]="true" [arrowIcon]="true"
+                     [parent]="true"></ngs-accordion>
+      <ngs-accordion [accordionObject]="data"></ngs-accordion>
+    </div>
+
+    <div class="column col-6 col-md-12">
+      <ngs-accordion [accordionTitle]="'Elements'" [mutuallyExclusive]="true" [arrowIcon]="true" [parent]="true">
+        <ngs-accordion [accordionTitle]="'Element 1'" [mutuallyExclusive]="true" [arrowIcon]="false"></ngs-accordion>
+        <ngs-accordion [accordionTitle]="'Element 2'" [mutuallyExclusive]="true" [arrowIcon]="false"></ngs-accordion>
+      </ngs-accordion>
+
+      <ngs-accordion [accordionTitle]="'Layout'" [mutuallyExclusive]="true" [arrowIcon]="true"
+                     [parent]="true"></ngs-accordion>
+      <ngs-accordion [accordionObject]="data"></ngs-accordion>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <a class="off-canvas-toggle btn btn-link btn-action" href="#sidebar">
+      <i class="icon icon-menu"></i>
+    </a>
+    <a class="btn btn-primary" href="#" target="_blank">GitHub</a>
+  </div>
+  <div class="docs-sidebar off-canvas-sidebar" id="sidebar">
+    <div class="docs-brand">
+      <a class="docs-logo" href="/"><img src="../assets/images/spectre-logo.svg" alt="Angular Spectre.css Framework">
+        <h2>SPECTRE</h2>
+      </a>
+    </div>
+    <div class="docs-nav">
+      <div class="accordion-container">
+        <div class="accordion">
+          <input id="accordion-getting-started" type="checkbox" name="docs-accordion-checkbox" hidden=""
+                 checked="checked">
+          <label class="accordion-header c-hand" for="accordion-getting-started">Getting started</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item"><a href="#introduction">Introduction</a></li>
+              <li class="menu-item"><a href="#installation">Installation</a></li>
+              <li class="menu-item"><a href="#custom">Custom version</a></li>
+              <li class="menu-item"><a href="#browsers">Browser support</a></li>
+              <li class="menu-item"><a href="#whatsnew">What's new</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <input id="accordion-elements" type="checkbox" name="docs-accordion-checkbox" hidden="">
+          <label class="accordion-header c-hand" for="accordion-elements">Elements</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item"><a href="#typography">Typography</a></li>
+              <li class="menu-item"><a href="#tables">Tables</a></li>
+              <li class="menu-item"><a href="#buttons">Buttons</a></li>
+              <li class="menu-item"><a href="#forms">Forms</a></li>
+              <li class="menu-item"><a href="#icons">Icons</a></li>
+              <li class="menu-item"><a href="#labels">Labels</a></li>
+              <li class="menu-item"><a href="#code">Code</a></li>
+              <li class="menu-item"><a href="#media">Media</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <input id="accordion-layout" type="checkbox" name="docs-accordion-checkbox" hidden="">
+          <label class="accordion-header c-hand" for="accordion-layout">Layout</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item"><a href="#flexbox">Flexbox grid</a></li>
+              <li class="menu-item"><a href="#responsive">Responsive</a></li>
+              <li class="menu-item"><a href="#navbar">Navbar</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <input id="accordion-components" type="checkbox" name="docs-accordion-checkbox" hidden="">
+          <label class="accordion-header c-hand" for="accordion-components">Components</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item" *ngFor="let route of routes">
+                <a [routerLink]="route.path">{{route.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <input id="accordion-utilities" type="checkbox" name="docs-accordion-checkbox" hidden="">
+          <label class="accordion-header c-hand" for="accordion-utilities">Utilities</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item"><a href="#colors">Colors</a></li>
+              <li class="menu-item"><a href="#cursors">Cursors</a></li>
+              <li class="menu-item"><a href="#display">Display</a></li>
+              <li class="menu-item"><a href="#divider">Divider</a></li>
+              <li class="menu-item"><a href="#loading">Loading</a></li>
+              <li class="menu-item"><a href="#position">Position</a></li>
+              <li class="menu-item"><a href="#shapes">Shapes</a></li>
+              <li class="menu-item"><a href="#text">Text</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <input id="accordion-experimentals" type="checkbox" name="docs-accordion-checkbox" hidden="">
+          <label class="accordion-header c-hand" for="accordion-experimentals">Experimentals</label>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="menu-item"><a href="#autocomplete">Autocomplete</a></li>
+              <li class="menu-item"><a href="#calendars">Calendars</a></li>
+              <li class="menu-item"><a href="#carousels">Carousels</a></li>
+              <li class="menu-item"><a href="#comparison">Comparison sliders</a></li>
+              <li class="menu-item"><a href="#filters">Filters</a></li>
+              <li class="menu-item"><a href="#meters">Meters</a></li>
+              <li class="menu-item"><a href="#off-canvas">Off-canvas</a></li>
+              <li class="menu-item"><a href="#parallax">Parallax</a></li>
+              <li class="menu-item"><a href="#progress">Progress</a></li>
+              <li class="menu-item"><a href="#sliders">Sliders</a></li>
+              <li class="menu-item"><a href="#timelines">Timelines</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="off-canvas-overlay" href="#close"></a>
+  <div class="off-canvas-content">
+    <div class="docs-content" id="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

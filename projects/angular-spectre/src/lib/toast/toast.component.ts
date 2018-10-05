@@ -1,10 +1,7 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 
-import {
-  NgsToastService, NgsToastData, NgsToastConfig,
-  NgsToastEvent, NgsToastEventType,
-} from './toast.service';
-import { CommonModule } from '@angular/common';
+import {NgsToastConfig, NgsToastData, NgsToastEvent, NgsToastEventType, NgsToastService,} from './toast.service';
+import {CommonModule} from '@angular/common';
 
 export function TOAST_SERVICE_FACTORY(config: NgsToastConfig): NgsToastService {
   return new NgsToastService(config);
@@ -130,4 +127,5 @@ export class NgsToastComponent implements OnInit {
   providers: [NgsToastConfig, NGS_TOAST_CONFIG_FACTORY_PROVIDER],
   imports: [CommonModule]
 })
-export class NgsToastModule { }
+export class NgsToastModule {
+}

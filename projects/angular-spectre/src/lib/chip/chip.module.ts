@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ChipComponent } from './chip.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ChipComponent} from './chip.component';
 
 @NgModule({
   imports: [
@@ -9,4 +9,5 @@ import { ChipComponent } from './chip.component';
   declarations: [ChipComponent],
   exports: [ChipComponent]
 })
-export class NgsChipModule { }
+export class NgsChipModule {
+}

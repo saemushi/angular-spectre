@@ -1,15 +1,5 @@
-import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostBinding,
-  Input,
-  NgModule,
-  OnInit,
-  TemplateRef,
-  ViewChild
-} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Component, ElementRef, HostBinding, Input, NgModule, TemplateRef, ViewChild} from '@angular/core';
 
 export enum Size {
   XLARGE = 'xl',
@@ -47,10 +37,6 @@ export class NgsAvatarComponent {
 
   @ViewChild('image')
   public image: ElementRef;
-
-  @ViewChild('imageTemplate', { read: TemplateRef })
-  protected imageTemplate: TemplateRef<any>;
-
   /**
    * Returns the `aria-label` of the avatar.
    *
@@ -83,15 +69,6 @@ export class NgsAvatarComponent {
    * @memberof NgsAvatarComponent
    */
   public roleDescription: string;
-
-  /**
-   * @hidden
-   */
-  private _size: string | Size;
-  public _initials: string;
-  public _statusImage: string;
-  public _squareShape: boolean | number;
-
   /**
    * Sets the `id` of the avatar. If not set, the first avatar component will have `id` = `"ngs-avatar-0"`.
    *
@@ -105,24 +82,6 @@ export class NgsAvatarComponent {
   @Input()
   public id = `ngs-avatar-${_uniqueIdCounter++}`;
   /**
-   * Sets a square shape to the avatar if `squareShape` is `"true"`.
-   * By default the shape of the avatar is a round.
-   *
-   * ```html
-   * <ngs-avatar squareShape = "true" ></ngs-avatar>
-   * ```
-   *
-   * @memberof NgsAvatarComponent
-   */
-  @Input()
-  get squareShape() {
-    return this._squareShape && 0;
-  }
-  set squareShape(value) {
-    this._squareShape = value;
-  }
-
-  /**
    * Sets the avatar's `initials`/`icon` color.
    *
    *```html
@@ -133,7 +92,6 @@ export class NgsAvatarComponent {
    */
   @Input()
   public color;
-
   /**
    * Sets the avatar image as background.
    *
@@ -145,7 +103,6 @@ export class NgsAvatarComponent {
    */
   @Input()
   public background = false;
-
   /**
    * Sets the background color of the avatar.
    *
@@ -157,24 +114,6 @@ export class NgsAvatarComponent {
    */
   @Input()
   public bgColor: string;
-
-  /**
-   * Sets `initials` to the avatar.
-   *
-   * ```html
-   * <ngs-avatar initials="MN"></ngs-avatar>
-   * ```
-   *
-   * @memberof NgsAvatarComponent
-   */
-  @Input()
-  get initials() {
-    return this._initials && this._initials.substring(0, 2);
-  }
-  set initials(value) {
-    this._initials = value;
-  }
-
   /**
    * Sets an `icon` to the avatar. All icons from the material icon set are supported.
    *
@@ -186,7 +125,6 @@ export class NgsAvatarComponent {
    */
   @Input()
   public icon: string;
-
   /**
    * Sets the `image` source of the avatar.
    *
@@ -198,24 +136,6 @@ export class NgsAvatarComponent {
    */
   @Input()
   public src: string;
-
-  /**
-   * Sets the `statusImage` source of the avatar status icon.
-   *
-   * ```html
-   * <ngs-avatar src="images/picture.jpg" statusImage="images/picture.jpg"></ngs-avatar>
-   * ```
-   *
-   * @memberof NgsAvatarComponent
-   */
-  @Input()
-  get statusImage() {
-    return this._statusImage || null;
-  }
-  set statusImage(value) {
-    this._statusImage = value;
-  }
-
   /**
    * Sets the `status`  of the avatar.
    * It can be set to `"online"` or `"busy"` or `"busy"`.
@@ -228,19 +148,16 @@ export class NgsAvatarComponent {
    */
   @Input()
   public status: Status;
-  /**
-   * Returns the `size` of the avatar.
-   *
-   * ```typescript
-   *let avatarSize =  this.avatar.size;
-   * ```
-   *
-   * @memberof NgsAvatarComponent
-   */
-  get classes(): string {
-    return this._size ? `avatar avatar-${this._size}` : 'avatar';
+  @ViewChild('imageTemplate', {read: TemplateRef})
+  protected imageTemplate: TemplateRef<any>;
+
+  constructor() {
   }
 
+  /**
+   * @hidden
+   */
+  private _size: string | Size;
 
   /**
    * Sets the `size`  of the avatar.
@@ -265,6 +182,81 @@ export class NgsAvatarComponent {
         this._size = undefined;
     }
   }
+
+  public _initials: string;
+
+  /**
+   * Sets `initials` to the avatar.
+   *
+   * ```html
+   * <ngs-avatar initials="MN"></ngs-avatar>
+   * ```
+   *
+   * @memberof NgsAvatarComponent
+   */
+  @Input()
+  get initials() {
+    return this._initials && this._initials.substring(0, 2);
+  }
+
+  set initials(value) {
+    this._initials = value;
+  }
+
+  public _statusImage: string;
+
+  /**
+   * Sets the `statusImage` source of the avatar status icon.
+   *
+   * ```html
+   * <ngs-avatar src="images/picture.jpg" statusImage="images/picture.jpg"></ngs-avatar>
+   * ```
+   *
+   * @memberof NgsAvatarComponent
+   */
+  @Input()
+  get statusImage() {
+    return this._statusImage || null;
+  }
+
+  set statusImage(value) {
+    this._statusImage = value;
+  }
+
+  public _squareShape: boolean | number;
+
+  /**
+   * Sets a square shape to the avatar if `squareShape` is `"true"`.
+   * By default the shape of the avatar is a round.
+   *
+   * ```html
+   * <ngs-avatar squareShape = "true" ></ngs-avatar>
+   * ```
+   *
+   * @memberof NgsAvatarComponent
+   */
+  @Input()
+  get squareShape() {
+    return this._squareShape && 0;
+  }
+
+  set squareShape(value) {
+    this._squareShape = value;
+  }
+
+  /**
+   * Returns the `size` of the avatar.
+   *
+   * ```typescript
+   *let avatarSize =  this.avatar.size;
+   * ```
+   *
+   * @memberof NgsAvatarComponent
+   */
+  get classes(): string {
+    return this._size ? `avatar avatar-${this._size}` : 'avatar';
+  }
+
   /**
    * Returns the template of the avatar.
    *
@@ -277,8 +269,6 @@ export class NgsAvatarComponent {
   get template() {
     return this.imageTemplate;
   }
-
-  constructor() { }
 
   /**
    * Returns the template of the avatar.
@@ -304,4 +294,5 @@ export class NgsAvatarComponent {
   exports: [NgsAvatarComponent],
   imports: [CommonModule]
 })
-export class NgsAvatarModule { }
+export class NgsAvatarModule {
+}

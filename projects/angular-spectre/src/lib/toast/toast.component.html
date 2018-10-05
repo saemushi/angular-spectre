@@ -1,4 +1,5 @@
-<div id="toast-{{index}}"  class="ngs-toast" *ngFor="let toast of toasts; let index=index" [ngClass]="['toast-'+toast.verticalPosition, toast.horizontalPosition]">
+<div id="toast-{{index}}" class="ngs-toast" *ngFor="let toast of toasts; let index=index"
+     [ngClass]="['toast-'+toast.verticalPosition, toast.horizontalPosition]">
   <div class="toast" [ngClass]="[toast.type]">
     <button class="btn btn-clear float-right" *ngIf="toast.showClose" (click)="closeToast(toast)"></button>
     <h6 *ngIf="toast.title">{{toast.title}}</h6>

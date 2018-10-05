@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
-import { Observable, Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 
 export enum NgsToastType {
@@ -10,6 +10,7 @@ export enum NgsToastType {
   SUCCESS = 'success',
   ERROR = 'error',
 }
+
 /**
  * Options to configure specific Toast
  */
@@ -70,8 +71,10 @@ export enum NgsToastEventType {
 }
 
 export class NgsToastEvent {
-  constructor(public type: NgsToastEventType, public value?: any) { }
+  constructor(public type: NgsToastEventType, public value?: any) {
+  }
 }
+
 /**
  * Toast service helps create different kinds of Toasts
  */
@@ -91,7 +94,8 @@ export class NgsToastService {
   private eventSource: Subject<NgsToastEvent> = new Subject<NgsToastEvent>();
   public events: Observable<NgsToastEvent> = this.eventSource.asObservable();
 
-  constructor(private config: NgsToastConfig) { }
+  constructor(private config: NgsToastConfig) {
+  }
 
   /**
    * Get list of toats
@@ -167,6 +171,19 @@ export class NgsToastService {
   }
 
   // Checks whether the local option is set, if not,
+
+  isFunction(obj: any) {
+    return typeof obj === 'function';
+  }
+
+  isNumber(obj: any) {
+    return typeof obj === 'number';
+  }
+
+  isString(obj: any) {
+    return typeof obj === 'string';
+  }
+
   // checks the global config
   private _checkConfigItem(config: any, options: any, property: string) {
     if (options[property] === false) {
@@ -183,17 +200,5 @@ export class NgsToastService {
       // Push up a new event
       this.eventSource.next(event);
     }
-  }
-
-  isFunction(obj: any) {
-    return typeof obj === 'function';
-  }
-
-  isNumber(obj: any) {
-    return typeof obj === 'number';
-  }
-
-  isString(obj: any) {
-    return typeof obj === 'string';
   }
 }

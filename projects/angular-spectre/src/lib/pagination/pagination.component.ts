@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 const range = (start, length) => {
   const a = Array(length);
@@ -20,13 +20,8 @@ export class PagerText {
 })
 export class PaginationComponent {
 
-  _count: number = 0;
-  _page: number = 1;
-  _size: number = 0;
-  _pagerText: PagerText = new PagerText();
   pages: any;
   rowCount: number = 0;
-
   @Input() pagerLeftArrowIcon: string = 'icon icon-arrow-left';
   @Input() pagerRightArrowIcon: string = 'icon icon-arrow-right';
   @Input() pagerPreviousIcon: string = 'icon icon-back';
@@ -36,23 +31,10 @@ export class PaginationComponent {
   @Input() pageEnds: boolean = false;
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  @Input()
-  set pagerText(val: PagerText) {
-    this._pagerText = val;
-  }
+  _count: number = 0;
 
-  get pagerText(): PagerText {
-    return this._pagerText;
-  }
-
-  @Input()
-  set size(val: number) {
-    this._size = val;
-    this.pages = this.calcPages();
-  }
-
-  get size(): number {
-    return this._size;
+  get count(): number {
+    return this._count;
   }
 
   @Input()
@@ -61,8 +43,10 @@ export class PaginationComponent {
     this.pages = this.calcPages();
   }
 
-  get count(): number {
-    return this._count;
+  _page: number = 1;
+
+  get page(): number {
+    return this._page;
   }
 
   @Input()
@@ -71,8 +55,27 @@ export class PaginationComponent {
     this.pages = this.calcPages();
   }
 
-  get page(): number {
-    return this._page;
+  _size: number = 0;
+
+  get size(): number {
+    return this._size;
+  }
+
+  @Input()
+  set size(val: number) {
+    this._size = val;
+    this.pages = this.calcPages();
+  }
+
+  _pagerText: PagerText = new PagerText();
+
+  get pagerText(): PagerText {
+    return this._pagerText;
+  }
+
+  @Input()
+  set pagerText(val: PagerText) {
+    this._pagerText = val;
   }
 
   get totalPages(): number {
@@ -107,7 +110,7 @@ export class PaginationComponent {
   }
 
   calcPages(page?: number): any[] {
-    if (this.visiblePages < 7 ) {
+    if (this.visiblePages < 7) {
       return this.pageRange(MAX_VISIBLE_PAGES, this.page, this.totalPages);
     }
 

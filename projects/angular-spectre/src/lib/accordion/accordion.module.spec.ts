@@ -1,4 +1,4 @@
-import { NgsAccordionModule } from './accordion.module';
+import {NgsAccordionModule} from './accordion.module';
 
 describe('AccordionsModule', () => {
   let accordionModule: NgsAccordionModule;

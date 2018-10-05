@@ -1,29 +1,29 @@
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {
-  Component,
-  OnInit,
-  NgModule,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
-  Output,
-  EventEmitter,
+  Component,
   ElementRef,
-  ViewContainerRef,
+  EventEmitter,
   Inject,
   InjectionToken,
-  AfterContentInit,
+  NgModule,
   OnDestroy,
+  OnInit,
+  Output,
+  TemplateRef,
   ViewChild,
-  TemplateRef} from '@angular/core';
-import { NgsMenuDividerDirective, NgsMenuItemComponent, NgsMenuBadgeDirective } from './menu.directives';
-import {
-  OverlayRef, Overlay, ScrollStrategy} from '@angular/cdk/overlay';
-import { Subscription, Subject } from 'rxjs';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { NgsToggleDirective, NgsToggleModule } from '../toggle/toggle.directive';
-import { OverlaySettings } from '../services/overly-settings';
-import { OverlayService } from './../services/overlay-service';
-import { takeUntil } from 'rxjs/operators';
+  ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
+import {NgsMenuBadgeDirective, NgsMenuDividerDirective, NgsMenuItemComponent} from './menu.directives';
+import {Overlay, OverlayRef, ScrollStrategy} from '@angular/cdk/overlay';
+import {Subject, Subscription} from 'rxjs';
+import {TemplatePortal} from '@angular/cdk/portal';
+import {NgsToggleDirective, NgsToggleModule} from '../toggle/toggle.directive';
+import {OverlaySettings} from '../services/overly-settings';
+import {OverlayService} from './../services/overlay-service';
+import {takeUntil} from 'rxjs/operators';
 
 /** Injection token that determines the scroll handling while the menu is open. */
 export const MAT_MENU_SCROLL_STRATEGY =
@@ -49,33 +49,39 @@ export const MAT_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   encapsulation: ViewEncapsulation.None,
 })
 export class NgsMenuComponent implements OnInit, AfterContentInit, OnDestroy {
-  private _overlayRef: OverlayRef | null = null;
+  @ViewChild(NgsToggleDirective)
+  public toggleRef: NgsToggleDirective;
+  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  /** Event emitted when the associated menu is opened. */
+  @Output() readonly menuOpened: EventEmitter<void> = new EventEmitter<void>();
+  /** Event emitted when the associated menu is closed. */
+  @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
+  protected destroy$ = new Subject<boolean>();
   private backdropClass: string = 'cdk-overlay-transparent-backdrop';
   private _closeSubscription = Subscription.EMPTY;
   private _hoverSubscription = Subscription.EMPTY;
   private _defaultOverlaySettings: OverlaySettings;
   private _element: ElementRef;
-  protected destroy$ = new Subject<boolean>();
-
-  @ViewChild(NgsToggleDirective)
-  public toggleRef: NgsToggleDirective;
-
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
-
-  /** Event emitted when the associated menu is opened. */
-  @Output() readonly menuOpened: EventEmitter<void> = new EventEmitter<void>();
-
-  /** Event emitted when the associated menu is closed. */
-  @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private _overlay: Overlay,
-    private _viewContainerRef: ViewContainerRef,
-    @Inject(MAT_MENU_SCROLL_STRATEGY) private _scrollStrategy,
-    private overlayService: OverlayService) {
+              private _viewContainerRef: ViewContainerRef,
+              @Inject(MAT_MENU_SCROLL_STRATEGY) private _scrollStrategy,
+              private overlayService: OverlayService) {
     this._defaultOverlaySettings = this.overlayService.getDefaultSettings();
   }
 
-  ngOnInit() { }
+  private _overlayRef: OverlayRef | null = null;
+
+  get overlayRef(): OverlayRef {
+    return this.toggleRef._overlayRef;
+  }
+
+  get menuOpen(): boolean {
+    return !this.toggleRef.collapsed;
+  }
+
+  ngOnInit() {
+  }
 
   ngAfterContentInit() {
     this.toggleRef.onClosing.pipe(takeUntil(this.destroy$)).subscribe(() => this.emitCloseFromMenu());
@@ -85,7 +91,6 @@ export class NgsMenuComponent implements OnInit, AfterContentInit, OnDestroy {
     this.menuClosed.emit();
   }
 
-
   ngOnDestroy() {
     if (this._overlayRef) {
       this._overlayRef.dispose();
@@ -93,14 +98,6 @@ export class NgsMenuComponent implements OnInit, AfterContentInit, OnDestroy {
     }
 
     this._cleanUpSubscriptions();
-  }
-
-  get menuOpen(): boolean {
-    return !this.toggleRef.collapsed;
-  }
-
-  get overlayRef(): OverlayRef {
-    return this.toggleRef._overlayRef;
   }
 
   triggersSubmenu(): boolean {
@@ -160,13 +157,14 @@ export class NgsMenuComponent implements OnInit, AfterContentInit, OnDestroy {
   toggleMenu(): void {
     return this.menuOpen ? this.closeMenu() : this.openMenu();
   }
+
   /**
-     * Toggles the menu
-     *
-     * ```typescript
-     * this.menu.toggle();
-     * ```
-     */
+   * Toggles the menu
+   *
+   * ```typescript
+   * this.menu.toggle();
+   * ```
+   */
   toggle(overlaySettings?: OverlaySettings) {
     if (!this.menuOpen) {
       this.openMenu(overlaySettings);
@@ -190,4 +188,5 @@ export class NgsMenuComponent implements OnInit, AfterContentInit, OnDestroy {
   providers: [MAT_MENU_SCROLL_STRATEGY_FACTORY_PROVIDER],
   imports: [CommonModule, NgsToggleModule]
 })
-export class NgsMenuModule { }
+export class NgsMenuModule {
+}
