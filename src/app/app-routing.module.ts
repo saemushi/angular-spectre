@@ -9,16 +9,20 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { ChipComponent } from './chip/chip.component';
+import { DividerComponent } from './divider/divider.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
-import { PaginationComponent } from './pagination/pagination.component';
 import { LandingComponent } from './landing/landing.component';
-import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
-import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
 import { MenuComponent } from './menu/menu.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { PanelComponent } from './panel/panel.component';
+import { PopoverComponent } from './popover/popover.component';
 import { ToastComponent } from './toast/toast.component';
+import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
+import { TooltipComponent } from './tooltip/tooltip.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
@@ -32,14 +36,17 @@ const routes: Routes = [
   { path: 'button', component: ButtonComponent },
   { path: 'card', component: CardComponent },
   { path: 'chip', component: ChipComponent },
+  { path: 'divider', component: DividerComponent },
   { path: 'empty-state', component: EmptyStateComponent },
   { path: 'icons', component: IconsComponent },
-  { path: 'pagination', component: PaginationComponent },
-  { path: 'tooltip', component: TooltipComponent },
-  { path: 'tooltipBasic', component: TooltipBasicComponent },
   { path: 'modal', component: ModalComponent },
   { path: 'menu', component: MenuComponent },
+  { path: 'pagination', component: PaginationComponent },
+  { path: 'panel', component: PanelComponent },
+  { path: 'popover', component: PopoverComponent },
   { path: 'toast', component: ToastComponent },
+  { path: 'tooltip', component: TooltipComponent },
+  { path: 'tooltipBasic', component: TooltipBasicComponent },
   { path: 'spinner', component: SpinnerComponent }
 ];
 @NgModule({
