@@ -44,6 +44,8 @@ export * from './lib/toggle/toggle.directive';
 
 export * from './lib/menu/menu.component';
 
+export * from './lib/nav/nav.component';
+
 export * from './lib/pagination/pagination.service';
 export * from './lib/pagination/pagination.component';
 export * from './lib/pagination/pagination.module';
@@ -53,6 +55,12 @@ export * from './lib/panel/panel.module';
 
 export * from './lib/popover/popover.directive';
 
+export * from './lib/spinner/spinner.component';
+
+export * from './lib/step/step.component';
+
+export * from './lib/tab/tab.component';
+
 export * from './lib/toast/toast.component';
 export * from './lib/toast/toast.service';
 
@@ -61,5 +69,3 @@ export * from './lib/tooltip/tooltip.module';
 
 export * from './lib/tooltip-old/tooltip';
 export * from './lib/tooltip-old/tooltip.module';
-
-export * from './lib/spinner/spinner.component';

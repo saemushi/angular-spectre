@@ -13,11 +13,14 @@ export const routes = [
   { path: 'icons', name: 'Icons'},
   { path: 'modal', name: 'Modal'},
   { path: 'menu', name: 'Menu'},
+  { path: 'nav', name: 'Nav'},
   { path: 'pagination', name: 'Pagination'},
   { path: 'panel', name: 'Panel'},
   { path: 'popover', name: 'Popover'},
+  { path: 'spinner', name: 'Spinner'},
+  { path: 'step', name: 'Step'},
+  { path: 'tab', name: 'Tab'},
   { path: 'toast', name: 'Toast'},
   { path: 'tooltip', name: 'Tooltip'},
   { path: 'tooltipBasic', name: 'Tooltip-Basic'},
-  { path: 'spinner', name: 'Spinner'}
 ];

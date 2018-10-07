@@ -14,14 +14,17 @@ import {
     FormInputModule,
     NgsModalModule,
     NgsMenuModule,
+    NgsNavModule,
     NgsPaginationModule,
     NgsPanelModule,
     NgsPopoverModule,
+    NgsSpinnerModule,
+    NgsStepModule,
+    NgsTabModule,
     NgsToastModule,
     NgsToggleModule,
     NgsTooltipModule,
     TooltipModule,
-    NgsSpinnerModule
 } from 'angular-spectre';
 
 const ngsModules = [
@@ -39,14 +42,17 @@ const ngsModules = [
     FormInputModule,
     NgsModalModule,
     NgsMenuModule,
+    NgsNavModule,
     NgsPaginationModule,
     NgsPanelModule,
     NgsPopoverModule,
+    NgsSpinnerModule,
+    NgsStepModule,
+    NgsTabModule,
     NgsToastModule,
     NgsToggleModule,
     NgsTooltipModule,
     TooltipModule,
-    NgsSpinnerModule
 ];
 
 @NgModule({
