@@ -29,6 +29,7 @@ import { PopoverComponent } from './popover/popover.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { StepComponent } from './step/step.component';
 import { TabComponent } from './tab/tab.component';
+import { TileComponent } from './tile/tile.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ToastComponent } from './toast/toast.component';
@@ -57,6 +58,7 @@ import { ToastComponent } from './toast/toast.component';
     SpinnerComponent,
     StepComponent,
     TabComponent,
+    TileComponent,
     ToastComponent,
     TooltipBasicComponent,
     TooltipComponent,

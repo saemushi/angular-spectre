@@ -61,6 +61,9 @@ export * from './lib/step/step.component';
 
 export * from './lib/tab/tab.component';
 
+export * from './lib/tile/tile.component';
+export * from './lib/tile/tile.module';
+
 export * from './lib/toast/toast.component';
 export * from './lib/toast/toast.service';
 

@@ -22,6 +22,7 @@ import { PopoverComponent } from './popover/popover.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { StepComponent } from './step/step.component';
 import { TabComponent } from './tab/tab.component';
+import { TileComponent } from './tile/tile.component';
 import { ToastComponent } from './toast/toast.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'spinner', component: SpinnerComponent },
   { path: 'step', component: StepComponent },
   { path: 'tab', component: TabComponent },
+  { path: 'tile', component: TileComponent },
   { path: 'toast', component: ToastComponent },
   { path: 'tooltip', component: TooltipComponent },
   { path: 'tooltipBasic', component: TooltipBasicComponent },

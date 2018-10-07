@@ -20,6 +20,7 @@ export const routes = [
   { path: 'spinner', name: 'Spinner'},
   { path: 'step', name: 'Step'},
   { path: 'tab', name: 'Tab'},
+  { path: 'tile', name: 'Tile'},
   { path: 'toast', name: 'Toast'},
   { path: 'tooltip', name: 'Tooltip'},
   { path: 'tooltipBasic', name: 'Tooltip-Basic'},
