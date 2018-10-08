@@ -1,10 +1,10 @@
-<ngs-breadcrumbs [data]="breadcrumbsData1"></ngs-breadcrumbs>
+<ngs-breadcrumbs [breadcrumb-data]="breadcrumbsData1"></ngs-breadcrumbs>
 
-<ngs-breadcrumbs [data]="breadcrumbsData2"></ngs-breadcrumbs>
+<ngs-breadcrumbs [breadcrumb-data]="breadcrumbsData2"></ngs-breadcrumbs>
 
 
 <ngs-breadcrumbs>
-    <ngs-breadcrumb-item link="www.google.com">Home</ngs-breadcrumb-item>
-    <ngs-breadcrumb-item>About</ngs-breadcrumb-item>
-    <ngs-breadcrumb-item>Contact</ngs-breadcrumb-item>
+    <ngs-breadcrumb-item link="www.google.com" item-data="Home"></ngs-breadcrumb-item>
+    <ngs-breadcrumb-item item-data="About"></ngs-breadcrumb-item>
+    <ngs-breadcrumb-item item-data="Contact" ngsTooltipBasic [position]="'bottom'" data-tooltip="Testing tool tip Testing"></ngs-breadcrumb-item>
 </ngs-breadcrumbs>

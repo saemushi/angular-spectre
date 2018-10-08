@@ -1,6 +1,6 @@
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="alert.open()">Show Dialog</button>
+    <button ngsButton color="primary" (click)="alert.open()">Show Dialog</button>
     <ngs-modal #alert title="Notification" message="Your email has been sent successfully!" leftButtonLabel="OK"
       (onLeftButtonSelect)="alert.close()">
     </ngs-modal>
@@ -10,7 +10,7 @@
 
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="toggleContent()">Show Sample</button>
+    <button ngsButton color="primary" (click)="toggleContent()">Show Sample</button>
     <div ngsToggle #toggleRef="toggle">
       <div class="modal active" id="modal-id">
         <a aria-label="Close" (click)="toggleContent()"></a>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button ngsButton color="'primary'" (click)="toggleContent()">Close Dialog</button>
+            <button ngsButton color="primary" (click)="toggleContent()">Close Dialog</button>
           </div>
         </div>
       </div>
@@ -36,10 +36,10 @@
 
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="dialog.open()">Show Dialog</button>
+    <button ngsButton color="primary" (click)="dialog.open()">Show Dialog</button>
     <ngs-modal #dialog title="Confirmation" message="Are you sure you want to delete this user?">
       <div ngsModalActions>
-        <button ngsButton color="'primary'" (click)="toggleContent()">Close Dialog</button>
+        <button ngsButton color="primary" (click)="toggleContent()">Close Dialog</button>
       </div>
     </ngs-modal>
   </div>
@@ -63,7 +63,7 @@
 
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="normalModal.open()">Show Regular Modal</button>
+    <button ngsButton color="primary" (click)="normalModal.open()">Show Regular Modal</button>
     <ngs-modal #normalModal title="Regular Modal" closeOnBackdropClick="true">
       <div ngsModalContent>
         <p>This is the content inside the modal.</p>
@@ -98,7 +98,7 @@
           smelly cheese who moved my cheese cow.</p>
       </div>
       <div class="modal-footer">
-        <button ngsButton color="'primary'" (click)="normalModal.close()">Close Dialog</button>
+        <button ngsButton color="primary" (click)="normalModal.close()">Close Dialog</button>
       </div>
     </ngs-modal>
   </div>
@@ -106,7 +106,7 @@
 
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="largeModal.open()">Show Large Modal</button>
+    <button ngsButton color="primary" (click)="largeModal.open()">Show Large Modal</button>
     <ngs-modal #largeModal title="Sign In" size="lg" closeOnBackdropClick="true">
       <div ngsModalContent>
         <p>This is the content inside the modal.</p>
@@ -141,7 +141,7 @@
           smelly cheese who moved my cheese cow.</p>
       </div>
       <div class="modal-footer">
-        <button ngsButton color="'primary'" (click)="largeModal.close()">Close Dialog</button>
+        <button ngsButton color="primary" (click)="largeModal.close()">Close Dialog</button>
       </div>
     </ngs-modal>
   </div>
@@ -149,7 +149,7 @@
 
 <div class="columns">
   <div class="column">
-    <button ngsButton color="'primary'" (click)="stackModal.open()">Show Stacked Modals</button>
+    <button ngsButton color="primary" (click)="stackModal.open()">Show Stacked Modals</button>
     <ngs-modal #stackModal title="Sign In" closeOnBackdropClick="true">
       <div class="content">
         <p>This is the content inside the modal.</p>
@@ -166,13 +166,13 @@
           deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>
       </div>
       <div class="modal-footer">
-        <button ngsButton color="'primary'" (click)="childModal1.open()">Open Child Modal</button>
-        <button ngsButton color="'primary'" (click)="stackModal.close()">Close</button>
+        <button ngsButton color="primary" (click)="childModal1.open()">Open Child Modal</button>
+        <button ngsButton color="primary" (click)="stackModal.close()">Close</button>
       </div>
       <ngs-modal #childModal1 title="Modal #1" message="Are you sure you want to delete this user?">
         <div ngsModalActions>
-          <button ngsButton color="'primary'" (click)="childModal2.open()">Open Child Modal</button>
-          <button ngsButton color="'primary'" (click)="childModal1.close()">Close</button>
+          <button ngsButton color="primary" (click)="childModal2.open()">Open Child Modal</button>
+          <button ngsButton color="primary" (click)="childModal1.close()">Close</button>
         </div>
         <ngs-modal #childModal2 title="Modal #2" rightButtonLabel="OK" (onRightButtonSelect)="childModal2.close()" size="sm">
           <div>
