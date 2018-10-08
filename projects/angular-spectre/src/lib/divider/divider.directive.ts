@@ -7,20 +7,19 @@ export type DividerContentPosition = 'left' | 'center' | 'right';
 @Directive({
     selector: 'ngsDivider, ngs-divider, [ngsDivider], [ngs-divider]'
 })
-export class NgsDividerDirective implements OnInit{
+export class NgsDividerDirective implements OnInit {
     @Input() dPos: DividerPosition = 'hori';
     @Input() cPos: DividerContentPosition = 'center';
     @Input() content: string = '';
 
-    constructor(private ele: ElementRef, private renderer: Renderer2) {}
-    ngOnInit(){
-        if(this.dPos === 'vert'){
+    constructor(private ele: ElementRef, private renderer: Renderer2) { }
+    ngOnInit() {
+        if (this.dPos === 'vert') {
             this.renderer.addClass(this.ele.nativeElement, 'divider-vert');
-        }
-        else{
+        } else {
             this.renderer.addClass(this.ele.nativeElement, 'divider');
         }
-        if(this.content !== ''){
+        if (this.content !== '') {
             this.renderer.setAttribute(this.ele.nativeElement, 'data-content', this.content);
         }
         this.renderer.addClass(this.ele.nativeElement, `text-${this.cPos}`);

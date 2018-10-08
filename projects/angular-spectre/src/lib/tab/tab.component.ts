@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Directive, Input, Output, NgModule, EventEmitter, ContentChildren, QueryList, AfterContentChecked, TemplateRef } from '@angular/core';
+import {
+    Component, OnInit, Directive, Input, Output, NgModule,
+    EventEmitter, ContentChildren, QueryList, AfterContentChecked, TemplateRef
+} from '@angular/core';
 
 let next = 0;
 
@@ -11,22 +14,22 @@ export interface NgsTabChangeEvent {
 @Directive({
     selector: 'ng-template[ngsTabContent]'
 })
-export class NgsTabContent {
+export class NgsTabContentDirective {
     constructor(public templateRef: TemplateRef<any>) { }
 }
 
 @Directive({
     selector: 'ngs-tab-item, ngsTabItem, [ngs-tab-item], [ngsTabItem]',
 })
-export class NgsTabItem {
+export class NgsTabItemDirective {
 
-    tabContent: NgsTabContent | null;
+    tabContent: NgsTabContentDirective | null;
 
     @Input() id = `ngs-tab-${next++}`;
 
     @Input() title: string;
 
-    @ContentChildren(NgsTabContent, { descendants: false }) tabsContent: QueryList<NgsTabContent>;
+    @ContentChildren(NgsTabContentDirective, { descendants: false }) tabsContent: QueryList<NgsTabContentDirective>;
 
     ngAfterContentChecked() {
         this.tabContent = this.tabsContent.first;
@@ -43,7 +46,7 @@ export class NgsTabComponent {
 
     @Input() activeId: string;
 
-    @ContentChildren(NgsTabItem) tabs: QueryList<NgsTabItem>;
+    @ContentChildren(NgsTabItemDirective) tabs: QueryList<NgsTabItemDirective>;
 
     @Output() tabChange = new EventEmitter<NgsTabChangeEvent>();
 
@@ -61,8 +64,8 @@ export class NgsTabComponent {
         this.activeId = activeTab ? activeTab.id : (this.tabs.length ? this.tabs.first.id : null);
     }
 
-    private _getTabById(id: string): NgsTabItem {
-        let tabsId: NgsTabItem[] = this.tabs.filter(tab => tab.id === id);
+    private _getTabById(id: string): NgsTabItemDirective {
+        let tabsId: NgsTabItemDirective[] = this.tabs.filter(tab => tab.id === id);
         return tabsId.length ? tabsId[0] : null;
     }
 
@@ -74,14 +77,14 @@ export class NgsTabComponent {
         CommonModule
     ],
     declarations: [
-        NgsTabContent,
+        NgsTabContentDirective,
         NgsTabComponent,
-        NgsTabItem
+        NgsTabItemDirective
     ],
     exports: [
-        NgsTabContent,
+        NgsTabContentDirective,
         NgsTabComponent,
-        NgsTabItem
+        NgsTabItemDirective
     ]
 })
 

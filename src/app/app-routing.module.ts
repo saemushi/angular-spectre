@@ -13,18 +13,22 @@ import { ChipComponent } from './chip/chip.component';
 import { DividerComponent } from './divider/divider.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
+import { LandingComponent } from './landing/landing.component';
 import { ModalComponent } from './modal/modal.component';
+import { MenuComponent } from './menu/menu.component';
 import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PanelComponent } from './panel/panel.component';
 import { PopoverComponent } from './popover/popover.component';
-import { RadioComponent } from './radio/radio.component';
-import { LandingComponent } from './landing/landing.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { StepComponent } from './step/step.component';
 import { TabComponent } from './tab/tab.component';
 import { TileComponent } from './tile/tile.component';
+import { ToastComponent } from './toast/toast.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
@@ -43,16 +47,18 @@ const routes: Routes = [
   { path: 'empty-state', component: EmptyStateComponent },
   { path: 'icons', component: IconsComponent },
   { path: 'modal', component: ModalComponent },
+  { path: 'menu', component: MenuComponent },
   { path: 'nav', component: NavComponent },
   { path: 'pagination', component: PaginationComponent },
   { path: 'panel', component: PanelComponent },
   { path: 'popover', component: PopoverComponent },
-  { path: 'radio', component: RadioComponent },
+  { path: 'spinner', component: SpinnerComponent },
   { path: 'step', component: StepComponent },
   { path: 'tab', component: TabComponent },
   { path: 'tile', component: TileComponent },
+  { path: 'toast', component: ToastComponent },
   { path: 'tooltip', component: TooltipComponent },
-  { path: 'tooltipBasic', component: TooltipBasicComponent }
+  { path: 'tooltipBasic', component: TooltipBasicComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

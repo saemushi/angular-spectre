@@ -41,6 +41,9 @@ export * from './lib/icons/icons.module';
 export * from './lib/label/label.directive';
 
 export * from './lib/modal/modal.component';
+export * from './lib/toggle/toggle.directive';
+
+export * from './lib/menu/menu.component';
 
 export * from './lib/nav/nav.component';
 
@@ -58,11 +61,18 @@ export * from './lib/radio/radio.component';
 export * from './lib/tile/tile.component';
 export * from './lib/tile/tile.module';
 
+export * from './lib/spinner/spinner.component';
+
 export * from './lib/step/step.component';
 
 export * from './lib/tab/tab.component';
 
 export * from './lib/toggle/toggle.directive';
+export * from './lib/tile/tile.component';
+export * from './lib/tile/tile.module';
+
+export * from './lib/toast/toast.component';
+export * from './lib/toast/toast.service';
 
 export * from './lib/tooltip/tooltip.directive';
 export * from './lib/tooltip/tooltip.module';

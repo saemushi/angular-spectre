@@ -18,20 +18,22 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { ChipComponent } from './chip/chip.component';
 import { CardComponent } from './card/card.component';
+import { DividerComponent } from './divider/divider.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { IconsComponent } from './icons/icons.component';
+import { ModalComponent } from './modal/modal.component';
+import { MenuComponent } from './menu/menu.component';
+import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PanelComponent } from './panel/panel.component';
-import { RadioComponent } from './radio/radio.component';
+import { PopoverComponent } from './popover/popover.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { StepComponent } from './step/step.component';
+import { TabComponent } from './tab/tab.component';
+import { TileComponent } from './tile/tile.component';
 import { TooltipBasicComponent } from './tooltipBasic/tooltipBasic.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
-import { ModalComponent } from './modal/modal.component';
-import { TileComponent } from './tile/tile.component';
-import { NavComponent } from './nav/nav.component';
-import { StepComponent } from './step/step.component';
-import { PopoverComponent } from './popover/popover.component';
-import { TabComponent } from './tab/tab.component';
-import { DividerComponent } from './divider/divider.component';
+import { ToastComponent } from './toast/toast.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -46,21 +48,22 @@ import { FormsModule } from '@angular/forms';
     BreadcrumbsComponent,
     ChipComponent,
     CardComponent,
+    DividerComponent,
     EmptyStateComponent,
     IconsComponent,
+    ModalComponent,
+    MenuComponent,
+    NavComponent,
     PaginationComponent,
     PanelComponent,
-    RadioComponent,
+    PopoverComponent,
+    SpinnerComponent,
+    StepComponent,
+    TabComponent,
+    TileComponent,
+    ToastComponent,
     TooltipBasicComponent,
     TooltipComponent,
-    ModalComponent,
-    TileComponent,
-    NavComponent,
-    StepComponent,
-    PopoverComponent,
-    TabComponent,
-    BarComponent,
-    DividerComponent
   ],
   imports: [
     BrowserModule,

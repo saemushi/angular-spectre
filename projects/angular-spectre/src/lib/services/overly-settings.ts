@@ -1,6 +1,13 @@
-import {ViewContainerRef} from '@angular/core';
-import {Direction} from '@angular/cdk/bidi';
-import {ScrollStrategy, PositionStrategy} from '@angular/cdk/overlay';
+import { ViewContainerRef, ElementRef } from '@angular/core';
+import { Direction } from '@angular/cdk/bidi';
+import { ScrollStrategy, PositionStrategy, NoopScrollStrategy } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+
+export type MenuPositionX = 'before' | 'after';
+
+export type MenuPositionY = 'above' | 'below';
+
+export const DEFAULT_PANEL_TOP_PADDING = 8;
 
 export interface DialogPosition {
   top?: string;
@@ -12,6 +19,8 @@ export interface DialogPosition {
 export class OverlaySettings<D = any> {
 
   viewContainerRef?: ViewContainerRef;
+  elementRef?: ElementRef;
+  portal?: TemplatePortal;
   id?: string;
   panelClass?: string | string[] = '';
   hasBackdrop?: boolean = true;
@@ -19,6 +28,8 @@ export class OverlaySettings<D = any> {
   disableClose?: boolean = false;
   width?: string = '';
   height?: string = '';
+  xPosition?: MenuPositionX = 'after';
+  yPosition?: MenuPositionY = 'below';
   minWidth?: number | string;
   minHeight?: number | string;
   maxWidth?: number | string = '80vw';
@@ -30,8 +41,12 @@ export class OverlaySettings<D = any> {
   ariaLabel?: string | null = null;
   autoFocus?: boolean = true;
   restoreFocus?: boolean = true;
-  scrollStrategy?: ScrollStrategy;
+  scrollStrategy?: ScrollStrategy = new NoopScrollStrategy();
   positionStrategy?: PositionStrategy;
   closeOnNavigation?: boolean = true;
   closeOnBackdropClick?: boolean = true;
+  overlapTrigger?: boolean = false;
+  constructor(settings: Object = {}) {
+    Object.assign(this, settings);
+  }
 }
